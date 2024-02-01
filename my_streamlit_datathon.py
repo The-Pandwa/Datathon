@@ -98,31 +98,54 @@ X = df_final[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports',
 y = df_final['match']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state= 36, train_size = 0.75)
-print("The length of the initial dataset is :", len(X))
-print("The length of the train dataset is   :", len(X_train))
-print("The length of the test dataset is    :", len(X_test))
 
-model = LogisticRegression().fit(X_train, y_train)
+# Sélectionner uniquement les caractéristiques choisies par l'utilisateur pour l'entraînement
+selected_features = ['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']
+X_selected = df_final[selected_features]
+X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected, y, random_state=36, train_size=0.75)
 
-print("\nR2 score for the Train dataset :", model.score(X_train, y_train).round(2))
-print("R2 score for the Test dataset :", model.score(X_test, y_test).round(2))
+# Normaliser les données
+scaler = MinMaxScaler()
+X_train_selected_scaled = scaler.fit_transform(X_train_selected)
+X_test_selected_scaled = scaler.transform(X_test_selected)
+user_1_input_scaled = scaler.transform(user_1_input)
+user_2_input_scaled = scaler.transform(user_2_input)
 
-for i, j in zip(model.classes_, model.predict_proba(X_test)[0].round(2)*100):
-  print("Prediction probability for:", i, "is", j)
+# Entraîner le modèle sur les caractéristiques sélectionnées
+model_selected_features = LogisticRegression()
+model_selected_features.fit(X_train_selected_scaled, y_train)
 
-person_1 = [2,5,9,4,7,7,8,3,10]
-person_2 = [10,2,4,7,5,8,3,1,6]
-compa_couple = [(x + y) / 2 for x, y in zip(person_1, person_2)]
+# Prédire la probabilité de compatibilité
+compatibility_probability = model_selected_features.predict_proba(user_1_input_scaled)
 
-compa_couple = [int(moyenne) for moyenne in compa_couple]
+# Afficher les résultats dans Streamlit
+st.write("Probabilité de compatibilité :", compatibility_probability)
 
-model.predict([compa_couple])
+# print("The length of the initial dataset is :", len(X))
+# print("The length of the train dataset is   :", len(X_train))
+# print("The length of the test dataset is    :", len(X_test))
 
-similarity = cosine_similarity(user_1_input, user_2_input)
-similarity
+# model = LogisticRegression().fit(X_train, y_train)
 
-# # Système de recommandation :
-# st.write("Voici nos recommandations en fonction des critères choisis :")
+# print("\nR2 score for the Train dataset :", model.score(X_train, y_train).round(2))
+# print("R2 score for the Test dataset :", model.score(X_test, y_test).round(2))
 
-# Interface visuel
-# Voir live coding Florent sur Streamlit pour arranger le visuel des reco films
+# for i, j in zip(model.classes_, model.predict_proba(X_test)[0].round(2)*100):
+#   print("Prediction probability for:", i, "is", j)
+
+# person_1 = [2,5,9,4,7,7,8,3,10]
+# person_2 = [10,2,4,7,5,8,3,1,6]
+# compa_couple = [(x + y) / 2 for x, y in zip(person_1, person_2)]
+
+# compa_couple = [int(moyenne) for moyenne in compa_couple]
+
+# model.predict([compa_couple])
+
+# similarity = cosine_similarity(user_1_input, user_2_input)
+# similarity
+
+# # # Système de recommandation :
+# # st.write("Voici nos recommandations en fonction des critères choisis :")
+
+# # Interface visuel
+# # Voir live coding Florent sur Streamlit pour arranger le visuel des reco films
