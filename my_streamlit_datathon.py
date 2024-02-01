@@ -14,6 +14,16 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LinearRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neighbors import NearestNeighbors
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics import accuracy_score, r2_score
+from sklearn.model_selection import cross_val_score
+from sklearn.metrics import confusion_matrix
 
 # Import dataset
 link = "https://github.com/The-Pandwa/Datathon/blob/main/df_final_speed_dating.csv"
@@ -82,175 +92,36 @@ user_1_input = np.array([[sports_1, movies_1, books_1, cooking_1, music_1, gamin
 user_2_input = np.array([[sports_2, movies_2, books_2, cooking_2, music_2, gaming_2, arts_2, clubbing_2, shopping_2]])
 
 # 
+X = df_final[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports',
+              'Art', 'Musique', 'TV_Cinema']]
+y = df_final['match']
 
-
-# Système de recommandation :
-st.write("Voici nos recommandations en fonction des critères choisis :")
-
-# Interface visuel
-# Voir live coding Florent sur Streamlit pour arranger le visuel des reco films
-
-"""#Data"""
-
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import plotly.express as px
-import seaborn as sns
-import random
-from google.colab import drive
-drive.mount('/content/drive')
-
-# df_charts = pd.read_csv("/content/drive/MyDrive/Musics/charts.csv")
-df_mentalhealth = pd.read_csv("/content/drive/MyDrive/Musics/dataset_mentalhealth.csv")
-df_tracks_features = pd.read_csv("/content/drive/MyDrive/Musics/tracks_features.csv")
-df_detailedrecords = pd.read_csv("/content/drive/MyDrive/Musics/HistoryOfMusic/detailedrecords.csv")
-df_name = pd.read_csv("/content/drive/MyDrive/Musics/HistoryOfMusic/names.csv")
-df_records = pd.read_csv("/content/drive/MyDrive/Musics/HistoryOfMusic/records.csv")
-df_titles = pd.read_csv("/content/drive/MyDrive/Musics/HistoryOfMusic/titles.csv")
-
-"""#Exploration"""
-
-#Classement des musique les plus écoutées (top200),détaillant nom, classement, l'artiste, le pays d'écoute, le nombre de stream, et la tendance
-df_charts
-
-#Indique le premier service de stream à l'avoir diffusé, le type de musique, le genre d'appartenance, le ryhtme, les types de fréquences utilisés, et le sentiment ressenti par le l'écoutant
-pd.set_option('display.max_columns', None)
-df_mentalhealth
-
-#Indique les caractéritiques principales de la musique (titre, album, artiste), mais aussi si c'est une musique explicite et ses caractéristiques musicales, et sa date de parution
-df_tracks_features
-
-#Indique les données sur le titre original, les titres
-df_detailedrecords.head()
-
-#Descriptif de chaque musique avec d'autres infos sur les infos de publications
-df_name.info()
-
-df_name_test = df_name.copy()
-
-df_name_test['BL record ID'] = df_name_test['BL record ID'].fillna(df_name_test['BL record ID'].mean())
-
-df_name_test['BL record ID'] = df_name_test['BL record ID'].astype(int)
-
-#Description de la publication de la musique
-df_records.info()
-
-#Descriptif de chaque musique avec d'autres infos sur les infos de publications
-df_titles.info()
-
-"""#Merge"""
-
-#MERGE = On ajoute des colonnes
-df_merge = pd.merge(df_name_test,
-           df_records,
-           how="left",                                                            #Inner, left, right, outer
-           left_on='BL record ID',
-           right_on='BL record ID')
-
-df_merge.info()
-
-#MERGE = On ajoute des colonnes
-df_merge_V2 = pd.merge(df_merge,
-             df_titles,
-             how="left",                                                            #Inner, left, right, outer
-             left_on='BL record ID',
-             right_on='BL record ID')
-
-df_merge_V2.info()
-
-"""#KNN"""
-
-#Partie commune
-df_tracks_feature_KNN = df_tracks_features.copy().dropna()                                                                          # Supprimer les valeurs nuls
-df_tracks_feature_KNN.select_dtypes(include = 'number')                                                              # selectionne tous les colnnes d'un dataframe en nombre
-
-X = df_tracks_feature_KNN.select_dtypes(include ='number')                                     # Il s'agit de la matrice qui contient toutes les caractéristiques (ou variables explicatives) de votre ensemble de données
-y = df_tracks_feature_KNN['colonne6']                                                                               # Il s'agit du vecteur qui contient les valeurs cibles que le modèle doit prédire
-
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y)                                           # Les matrices de caractéristiques et le vecteur cible que vous souhaitez diviser en ensembles d'entraînement et de test
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=2,)                          # Cela permet de fixer une graine (seed) pour la génération aléatoire
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=2, train_size = 0.80)       # Cela spécifie la proportion des données à inclure dans l'ensemble d'entraînement
-
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state= 36, train_size = 0.75)
 print("The length of the initial dataset is :", len(X))
 print("The length of the train dataset is   :", len(X_train))
 print("The length of the test dataset is    :", len(X_test))
 
-"""#Cosine"""
+model = LogisticRegression().fit(X_train, y_train)
 
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+print("\nR2 score for the Train dataset :", model.score(X_train, y_train).round(2))
+print("R2 score for the Test dataset :", model.score(X_test, y_test).round(2))
 
-# Exemple de données (trois documents)
-documents = [
-    "Le ciel est bleu",
-    "Les nuages flottent dans le ciel",
-    "Le soleil brille dans le ciel"
-]
+for i, j in zip(model.classes_, model.predict_proba(X_test)[0].round(2)*100):
+  print("Prediction probability for:", i, "is", j)
 
-# Convertir les documents en vecteurs en utilisant CountVectorizer
-vectorizer = CountVectorizer().fit_transform(documents)
+person_1 = [2,5,9,4,7,7,8,3,10]
+person_2 = [10,2,4,7,5,8,3,1,6]
+compa_couple = [(x + y) / 2 for x, y in zip(person_1, person_2)]
 
-# Calcul de la similarité cosinus entre les vecteurs
-cosine_similarities = cosine_similarity(vectorizer)
+compa_couple = [int(moyenne) for moyenne in compa_couple]
 
-# Afficher la matrice de similarité cosinus
-print("Matrice de similarité cosinus :\n", cosine_similarities)
+model.predict([compa_couple])
 
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-
-# Exemple de données (quatre documents)
-documents = [
-    "Python est un langage de programmation puissant",
-    "Java est également un langage de programmation populaire",
-    "Les développeurs utilisent Python pour l'analyse de données",
-    "L'apprentissage automatique utilise souvent des langages comme Python et R"
-]
-
-# Convertir les documents en vecteurs TF-IDF
-vectorizer = TfidfVectorizer()
-tfidf_matrix = vectorizer.fit_transform(documents)
-
-# Calcul de la similarité cosinus entre les vecteurs
-cosine_similarities = cosine_similarity(tfidf_matrix, tfidf_matrix)
-
-# Afficher la matrice de similarité cosinus
-print("Matrice de similarité cosinus :\n", cosine_similarities)
-
-"""   Et si après le taux de compatibilité on propose des axes de recommandation un peu dafuq ?"""
-
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-
-# Exemple de données (quatre documents avec des thèmes opposés)
-documents = [
-    "Les montagnes offrent une vue imprenable",
-    "Les océans sont vastes et mystérieux",
-    "Les déserts sont arides et chauds",
-    "Les forêts sont denses et verdoyantes"
-]
-
-# Convertir les documents en vecteurs TF-IDF
-vectorizer = TfidfVectorizer()
-tfidf_matrix = vectorizer.fit_transform(documents)
-
-# Calcul de la similarité cosinus entre les vecteurs
-cosine_similarities = cosine_similarity(tfidf_matrix, tfidf_matrix)
-
-# Afficher la matrice de similarité cosinus
-print("Matrice de similarité cosinus :\n", cosine_similarities)
-
-import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
-
-alice = np.array([0,0,1])
-bob = np.array([1,0,1])
-
-alice = alice.reshape(1, -1)
-bob = bob.reshape(1, -1)
-
-
-similarity = cosine_similarity(alice, bob)
+similarity = cosine_similarity(user_1_input, user_2_input)
 similarity
+
+# # Système de recommandation :
+# st.write("Voici nos recommandations en fonction des critères choisis :")
+
+# Interface visuel
+# Voir live coding Florent sur Streamlit pour arranger le visuel des reco films
