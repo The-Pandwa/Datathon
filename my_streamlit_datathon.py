@@ -28,7 +28,13 @@ from sklearn.metrics import accuracy_score, r2_score
 
 # Import dataset
 link = "https://github.com/The-Pandwa/Datathon/blob/main/df_final_speed_dating.csv"
-df_final_speed_dating = pd.read_csv(link, sep = ',')
+df_final_speed_dating = pd.read_csv(link)
+
+try:
+    df_final_speed_dating = pd.read_csv(link)
+except pd.errors.ParserError as e:
+    st.error(f"Erreur lors de la lecture du fichier CSV : {e}")
+
 
 # URL de l'image sur GitHub
 github_image_url = "https://static.streamlit.io/examples/dog.jpg"
