@@ -14,14 +14,15 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-# from sklearn.model_selection import train_test_split
+import sklearn
+from sklearn.model_selection import train_test_split
 # from sklearn.linear_model import LogisticRegression
-# from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression
 # from sklearn.neighbors import KNeighborsClassifier
 # from sklearn.neighbors import NearestNeighbors
 # from sklearn.tree import DecisionTreeClassifier
-# from sklearn.metrics.pairwise import cosine_similarity
-# from sklearn.metrics import accuracy_score, r2_score
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics import accuracy_score, r2_score
 # from sklearn.model_selection import cross_val_score
 # from sklearn.metrics import confusion_matrix
 
