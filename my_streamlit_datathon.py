@@ -77,10 +77,10 @@ with col1:
 
 with col2:
   st.write("Choix du second partenaire:")
-  dining =st.slider("Sports (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
-  movies_2 =st.slider("Movies (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
-  Books_2 = st.slider("Books (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
-  Cooking_2 =st.slider("Cooking (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  dining_2 =st.slider("Sports (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  gaming =st.slider("Movies (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  clubbing = st.slider("Books (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  reading  =st.slider("Cooking (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
   Musics_2 =st.slider("Musics (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
   Gaming_2 =st.slider("Gaming (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
   Arts_2 =st.slider("Arts (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
