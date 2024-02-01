@@ -30,42 +30,24 @@ st.sidebar.title('Votre taux de compatibilité :')
 
 # # Filtrer par film. Le point unique permet de retourner une lsite plutôt que d'avoir à saisir du texte.
 st.sidebar.write("Vous voulez être en intérieur/ extérieur ?")
-# selected_film = st.sidebar.multiselect('Sélectionnez votre film', df['title'].unique())
-# selected_film = re.sub(r"[:',-]", " ", selected_film)
 
 # # Filtrer par acteur
 st.sidebar.write("Vous voulez sortir ?")
-# selected_actor = st.sidebar.multiselect('Sélectionnez votre actrice/acteur', df['actress/actor'].unique())
-# selected_actor = re.sub(r"[:',-]", " ", selected_actor)
 
 # # Filtrer par acteur
 st.sidebar.write("Que voulez vous mangez ?")
-# selected_actor = st.sidebar.multiselect('Sélectionnez votre actrice/acteur', df['actress/actor'].unique())
-# selected_actor = re.sub(r"[:',-]", " ", selected_actor)
 
 # # Filtrer par réal
 st.sidebar.write("Une envie de musique ?")
-# selected_director = st.sidebar.multiselect('Sélectionnez une réalisatrice/réalisateur', df['director'].unique())
-# selected_director = re.sub(r"[:',-]", " ", selected_director)
 
 # # Filtrer par compositeur
 st.sidebar.write("Une envie de cadeau ?")
-# selected_composer = st.sidebar.multiselect('Sélectionnez une compositrice/compositeur', df['composer'].unique())
-# selected_composer = re.sub(r"[:',-]", " ", selected_composer)
 
 # # Filtrer par compositeur
 st.sidebar.write("Votre age ?")
-# selected_composer = st.sidebar.multiselect('Sélectionnez une compositrice/compositeur', df['composer'].unique())
-# selected_composer = re.sub(r"[:',-]", " ", selected_composer)
 
 # # Filtrer par compositeur
 st.sidebar.write("Cadeau pour vous ou un autre ?")
-# selected_composer = st.sidebar.multiselect('Sélectionnez une compositrice/compositeur', df['composer'].unique())
-# selected_composer = re.sub(r"[:',-]", " ", selected_composer)
-
-# # Filtrer votre DataFrame en fonction des sélections
-# filtered_df = df[df['title'].isin(selected_films) & df['actress/actor'].isin(selected_actors) &
-#                  df['director'].isin(selected_directors) & df['composer'].isin(selected_composers)]
 
 # # Afficher les résultats
 col1, col2 = st.columns([1, 1], gap="large")
@@ -94,8 +76,13 @@ with col2:
   Clubbing_2 = st.slider("Clubbing (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
   Shopping_2 =st.slider("Shopping (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
 
+# Préparer les données pour le modèle
+user_1_input = np.array([[sports_1, movies_1, books_1, cooking_1, music_1, gaming_1, arts_1, clubbing_1, shopping_1]])
+# Préparer les données pour le modèle
+user_2_input = np.array([[sports_2, movies_2, books_2, cooking_2, music_2, gaming_2, arts_2, clubbing_2, shopping_2]])
 
-st.write("Danse n'est pas du", sports_1)
+# 
+
 
 # Système de recommandation :
 st.write("Voici nos recommandations en fonction des critères choisis :")
