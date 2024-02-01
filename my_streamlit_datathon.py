@@ -77,20 +77,20 @@ with col1:
 
 with col2:
   st.write("Choix du second partenaire:")
-  dining_2 =st.slider("Sports (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
-  gaming =st.slider("Movies (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
-  clubbing = st.slider("Books (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
-  reading  =st.slider("Cooking (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
-  Musics_2 =st.slider("Musics (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
-  Gaming_2 =st.slider("Gaming (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
-  Arts_2 =st.slider("Arts (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
-  Clubbing_2 = st.slider("Clubbing (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
-  Shopping_2 =st.slider("Shopping (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  dining_2 =st.slider("Dining (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  gaming_2 =st.slider("Gaming (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  clubbing_2 = st.slider("Clubbing (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  reading_2  =st.slider("Reading (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  shopping_2 =st.slider("Shopping (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  Sports_2 =st.slider("Sports (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  Art_2 =st.slider("Art (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  Musique_2 = st.slider("Musique(Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
+  TV_Cinema_2 =st.slider("TV_Cinema (Partenaire 2)", min_value=0, max_value=10, value=None, step=1)
 
 # Préparer les données pour le modèle
 user_1_input = np.array([[dining_1, gaming_1, clubbing_1, reading_1, shopping_1, Sports_1, Art_1, Musique_1, TV_Cinema_1]])
 # Préparer les données pour le modèle
-user_2_input = np.array([[sports_2, movies_2, books_2, cooking_2, music_2, gaming_2, arts_2, clubbing_2, shopping_2]])
+user_2_input = np.array([[dining_2, gaming_2, clubbing_2 reading_2, shopping_2, Sports_2, Art_2, Musique_2, TV_Cinema_2]])
 
 # 
 X = df_final[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports',
