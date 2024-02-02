@@ -31,7 +31,7 @@ from sklearn.metrics import accuracy_score, r2_score
 # # Import dataset
 link = "https://github.com/The-Pandwa/Datathon/blob/main/df_final_speed_dating_test.csv"
 try:
-    df = pd.read_csv(file_path, sep=',')
+    df = pd.read_csv(link, sep=',')
 except pd.errors.ParserError as e:
     # Si une erreur de parsing se produit, vous pouvez examiner l'exception
     # et prendre des mesures appropriées, comme imprimer les détails de l'erreur.
