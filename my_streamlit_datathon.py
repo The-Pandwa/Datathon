@@ -80,61 +80,61 @@ user_1_input = np.array([[dining_1, gaming_1, clubbing_1, reading_1, shopping_1,
 # Préparer les données pour le modèle
 user_2_input = np.array([[dining_2, gaming_2, clubbing_2, reading_2, shopping_2, Sports_2, Art_2, Musique_2, TV_Cinema_2]])
 
-# 
-# X = df_final_speed_dating[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports',
-#               'Art', 'Musique', 'TV_Cinema']]
-# y = df_final_speed_dating['match']
 
-# X_train, X_test, y_train, y_test = train_test_split(X, y, random_state= 36, train_size = 0.75)
+X = df_final_speed_dating[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports',
+              'Art', 'Musique', 'TV_Cinema']]
+y = df_final_speed_dating['match']
 
-# # Sélectionner uniquement les caractéristiques choisies par l'utilisateur pour l'entraînement
-# selected_features = ['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']
-# X_selected = df_final_speed_dating[selected_features]
-# X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected, y, random_state=36, train_size=0.75)
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state= 36, train_size = 0.75)
 
-# print("The length of the initial dataset is :", len(X))
-# print("The length of the train dataset is   :", len(X_train))
-# print("The length of the test dataset is    :", len(X_test))
+# Sélectionner uniquement les caractéristiques choisies par l'utilisateur pour l'entraînement
+selected_features = ['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']
+X_selected = df_final_speed_dating[selected_features]
+X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected, y, random_state=36, train_size=0.75)
 
-# model = LogisticRegression().fit(X_train, y_train)
+print("The length of the initial dataset is :", len(X))
+print("The length of the train dataset is   :", len(X_train))
+print("The length of the test dataset is    :", len(X_test))
 
-# print("\nR2 score for the Train dataset :", model.score(X_train, y_train).round(2))
-# print("R2 score for the Test dataset :", model.score(X_test, y_test).round(2))
+model = LogisticRegression().fit(X_train, y_train)
 
-# for i, j in zip(model.classes_, model.predict_proba(X_test)[0].round(2)*100):
-#   print("Prediction probability for:", i, "is", j)
+print("\nR2 score for the Train dataset :", model.score(X_train, y_train).round(2))
+print("R2 score for the Test dataset :", model.score(X_test, y_test).round(2))
 
-# person_1 = user_1_input
-# person_2 = user_2_input
-# compa_couple = [(x + y) / 2 for x, y in zip(person_1, person_2)]
+for i, j in zip(model.classes_, model.predict_proba(X_test)[0].round(2)*100):
+  print("Prediction probability for:", i, "is", j)
 
-# compa_couple = [int(moyenne) for moyenne in compa_couple]
+person_1 = user_1_input
+person_2 = user_2_input
+compa_couple = [(x + y) / 2 for x, y in zip(person_1, person_2)]
 
-# model.predict([compa_couple])
+compa_couple = [int(moyenne) for moyenne in compa_couple]
 
-# similarity = cosine_similarity(user_1_input, user_2_input)
-# similarity
+model.predict([compa_couple])
 
-# # Système de recommandation :
-# st.write("Voici nos recommandations en fonction des critères choisis :")
+similarity = cosine_similarity(user_1_input, user_2_input)
+similarity
 
-# # Interface visuel
-# # Voir live coding Florent sur Streamlit pour arranger le visuel des reco films
+# Système de recommandation :
+st.write("Voici nos recommandations en fonction des critères choisis :")
 
-# def recommandation(df):
+# Interface visuel
+# Voir live coding Florent sur Streamlit pour arranger le visuel des reco films
 
-#     col0, col1= st.columns(2)
+def recommandation(df):
 
-
-#     with col0:
-#         full_link_0="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][0]
-#         st.image(full_link_0)
-#         imdb_link_0 = "https://www.imdb.com/title/"+films_rom['imdb_id'][0]
-#         st.write(f"[{ films_rom['originalTitle'][1]}]({imdb_link_0})")
+    col0, col1= st.columns(2)
 
 
-#     with col1:
-#         full_link_1="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][1]
-#         st.image(full_link_1)
-#         imdb_link_1 = "https://www.imdb.com/title/"+films_rom['imdb_id'][1]
-#         st.write(f"[{ recommandation['originalTitle'][2]}]({imdb_link_1})")
+    with col0:
+        full_link_0="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][0]
+        st.image(full_link_0)
+        imdb_link_0 = "https://www.imdb.com/title/"+films_rom['imdb_id'][0]
+        st.write(f"[{ films_rom['originalTitle'][1]}]({imdb_link_0})")
+
+
+    with col1:
+        full_link_1="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][1]
+        st.image(full_link_1)
+        imdb_link_1 = "https://www.imdb.com/title/"+films_rom['imdb_id'][1]
+        st.write(f"[{ recommandation['originalTitle'][2]}]({imdb_link_1})")
