@@ -43,7 +43,6 @@ st.image.col1(image_url, use_column_width=True)
 image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
 st.image.col2(image_url, use_column_width=True)
 
-
 #Critères
 with col1:
     st.write("Choix du premier partenaire:")
@@ -56,8 +55,6 @@ with col1:
     Art_1 =st.slider("Art (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
     Musique_1 = st.slider("Musique(Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
     TV_Cinema_1 =st.slider("TV_Cinema (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-
-
 with col2:
     st.write("Choix du second partenaire:")
     dining_2 =st.slider("Dining (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
@@ -69,7 +66,6 @@ with col2:
     Art_2 =st.slider("Art (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
     Musique_2 = st.slider("Musique(Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
     TV_Cinema_2 =st.slider("TV_Cinema (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
-    
 
 # Préparer les données pour le modèle
 user_1_input = np.array([[dining_1, gaming_1, clubbing_1, reading_1, shopping_1, Sports_1, Art_1, Musique_1, TV_Cinema_1]])
@@ -111,45 +107,37 @@ if percent_similarity is not None:
 #Affiche des films
 films_rom = pd.read_csv("https://raw.githubusercontent.com/The-Pandwa/Datathon/main/films_rom.csv")
 
-df_0 = films_rom.loc[films_rom['popularite_ponderee'] > 7.5]
+# Système de recommandation
+st.write("Voici nos recommandations :")
 
-df_20 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.8) & (films_rom['popularite_ponderee'] <= 7.5)]
+# Création des DF en fonction de conditions par popularité
 
-df_40 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.608) & (films_rom['popularite_ponderee'] <= 6.8)]
+df_0 = films_rom.loc[films_rom['Note'] > 7.5]
+df_20 = films_rom.loc[(films_rom['Note'] > 6.8) & (films_rom['Note'] <= 7.5)]
+df_40 = films_rom.loc[(films_rom['Note'] > 6.608) & (films_rom['Note'] <= 6.8)]
+df_60 = films_rom.loc[(films_rom['Note'] > 6.51) & (films_rom['Note'] <= 6.607)]
+df_80 = films_rom.loc[films_rom['Note'] < 6.51]
 
-df_60 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.51) & (films_rom['popularite_ponderee'] <= 6.607)]
-
-df_80 = films_rom.loc[films_rom['popularite_ponderee'] < 6.51]
-
-
+# Fonction pour affichage des poster de films
+def recommandation(df):
+    col0, col1= st.columns(2)
+    with col0:
+        full_link_0="https://image.tmdb.org/t/p/w500" +df['Affiche'].iloc[0]
+        st.image(full_link_0)
+        st.write(df['Titre'].iloc[0])
+    with col1:
+        full_link_1="https://image.tmdb.org/t/p/w500" +df['Affiche'].iloc[1]
+        st.image(full_link_1)
+        st.write(df['Titre'].iloc[1])
 
 # Affichage en fonction de la similarité
 if similarity < 0.19:
-    st.table(df_0)
+    recommandation(df_0)
 elif 0.20 <= similarity < 0.39:
-    st.table(df_20)
+    recommandation(df_20)
 elif 0.40 <= similarity < 0.59:
-    st.table(df_40)
+    recommandation(df_40)
 elif 0.60 <= similarity < 0.79:
-    st.table(df_60)
+    recommandation(df_60)
 else:
-    st.table(df_80)
-
-def recommandation(df_tmdb):
-
-    col0, col1= st.columns(2)
-
-    with col0:
-        full_link_0="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][0]
-        st.image(full_link_0)
-        imdb_link_0 = "https://www.imdb.com/title/"+films_rom['imdb_id'][0]
-        st.write(f"[{ films_rom['originalTitle'][0]}]({imdb_link_0})")
-
-    with col1:
-        full_link_1="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][1]
-        st.image(full_link_1)
-        imdb_link_1 = "https://www.imdb.com/title/"+films_rom['imdb_id'][1]
-        st.write(f"[{ recommandation['originalTitle'][1]}]({imdb_link_1})")
-
-if __name__ == "__df_tmdb__":
-    main()
+    recommandation(df_80)
