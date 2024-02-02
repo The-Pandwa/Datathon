@@ -31,35 +31,8 @@ from sklearn.metrics import accuracy_score, r2_score
 # link = "https://github.com/The-Pandwa/Datathon/blob/main/df_final_speed_dating_test.csv"
 # df_final_speed_dating = pd.read_csv(link)
 
-# Afficher l'image dans la barre latérale
-st.sidebar.image(github_image_url, use_column_width=True)
-
 # Création de la sidebar et features
 st.sidebar.title('Votre taux de compatibilité :')
-
-# # Filtrer par film. Le point unique permet de retourner une lsite plutôt que d'avoir à saisir du texte.
-st.sidebar.write("Vous voulez être en intérieur/ extérieur ?")
-
-# # Filtrer par acteur
-st.sidebar.write("Vous voulez sortir ?")
-
-# # Filtrer par acteur
-st.sidebar.write("Que voulez vous mangez ?")
-
-# # Filtrer par réal
-st.sidebar.write("Une envie de musique ?")
-
-# # Filtrer par compositeur
-st.sidebar.write("Une envie de cadeau ?")
-
-# # Filtrer par compositeur
-st.sidebar.write("Votre age ?")
-
-# # Filtrer par compositeur
-st.sidebar.write("Cadeau pour vous ou un autre ?")
-
-# # Afficher les résultats
-col1, col2 = st.columns([1, 1], gap="large")
 
 with col1:
   st.write("Choix du premier partenaire:")
