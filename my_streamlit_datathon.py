@@ -30,16 +30,16 @@ from sklearn.metrics import accuracy_score, r2_score
 
 # # Import dataset
 link = "https://github.com/The-Pandwa/Datathon/blob/main/df_final_speed_dating_test.csv"
+df_final_speed_dating = pd.read_csv(link)
 
-try:
-    df_final_speed_dating = pd.read_csv(link, sep=',', error_bad_lines=False)
-except pd.errors.ParserError as e:
-    # Si une erreur de parsing se produit, vous pouvez examiner l'exception
-    # et prendre des mesures appropriées, comme imprimer les détails de l'erreur.
-    st.error(f"Erreur de parsing : {e}")
-    # Vous pouvez également spécifier une autre action, comme sauter cette ligne ou remplacer les caractères problématiques.
+# URL du fichier CSV sur GitHub
+github_url = "https://raw.githubusercontent.com/username/repository/main/fichier.csv"
 
+# Charger le fichier CSV dans un DataFrame pandas
+df = pd.read_csv(github_url)
 
+# Afficher le DataFrame dans Streamlit
+st.dataframe(df)
 
 # Création de la sidebar et features
 st.sidebar.title('Votre taux de compatibilité :')
