@@ -94,14 +94,6 @@ if st.button("Vous matchez ou pas? "):
     model = LogisticRegression().fit(X_train, y_train)
     
     # Probabilité de prédiction pour les classes
-    # resultat =[]
-    # for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
-    #     resultat.append(j)
-    # if resultat[0]>resultat[1]:
-    #     st.write("Pas Match Aîe aîe aîe, ça sent le sapin entre vous !")
-    # else:
-    #     st.write("Match Chaude soirée en perspective !")
-
     compa_couple = [(x + y) / 2 for x, y in zip(user_1_input, user_2_input)]
     compa_couple = [int(moyenne) for moyenne in compa_couple]
     
@@ -120,7 +112,7 @@ if st.button("Vous matchez ou pas? "):
     films_rom = pd.read_csv("https://raw.githubusercontent.com/The-Pandwa/Datathon/main/films_rom.csv")
     
     # Système de recommandation
-    st.write("Voici nos recommandations :")
+    st.write("Voici nos recommandations de films pour créer des moments inoubliables :")
     
     # Création des DF en fonction de conditions par popularité
     
