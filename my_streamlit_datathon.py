@@ -13,7 +13,7 @@ Original file is located at
 background_color = """
     <style>
         body {
-            background-color: #add8e6; /* Bleu clair */
+            background-color: #DA1884 ; /* Bleu clair */
         }
     </style>
 """
