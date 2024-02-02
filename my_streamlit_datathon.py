@@ -34,6 +34,17 @@ col1, col2 = st.columns([1, 1], gap="large")
 
 #Texte intro
 
+
+# Ajouter une image en haut de la colonne
+image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
+st.image.col1(image_url, use_column_width=True)
+
+# Ajouter une image en haut de la colonne
+image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
+st.image.col2(image_url, use_column_width=True)
+
+
+#Critères
 with col1:
     st.write("Choix du premier partenaire:")
     dining_1 =st.slider("Dining (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
@@ -58,6 +69,7 @@ with col2:
     Art_2 =st.slider("Art (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
     Musique_2 = st.slider("Musique(Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
     TV_Cinema_2 =st.slider("TV_Cinema (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
+    
 
 # Préparer les données pour le modèle
 user_1_input = np.array([[dining_1, gaming_1, clubbing_1, reading_1, shopping_1, Sports_1, Art_1, Musique_1, TV_Cinema_1]])
@@ -95,41 +107,9 @@ if percent_similarity is not None:
         st.sidebar.write('Aîe aîe aîe, ça sent le sapin entre vous !')
     elif percent_similarity >= 0.5:
         st.sidebar.write('Chaude soirée en perspective !')
-
-link10 = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/tmdb_full_cleaned_1.csv"
-tmdb_full_cleaned_1 = pd.read_csv(link10)
-link11 = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/tmdb_full_cleaned_2.csv"
-tmdb_full_cleaned_2 = pd.read_csv(link11)
-
-df_tmdb = pd.concat([tmdb_full_cleaned_1, tmdb_full_cleaned_2])
-
-link3 = 'https://raw.githubusercontent.com/The-Pandwa/Datathon/main/title_basics_cleaned.csv'
-df_imdb = pd.read_csv(link3)
-
-films_rom_imdb = df_imdb.loc[df_imdb['genres'].str.contains('Romance')]
-
-films_rom_imdb['runtimeMinutes'] = films_rom_imdb['runtimeMinutes'].replace(r"\N", None)
-films_rom_imdb['runtimeMinutes'] = pd.to_numeric(films_rom_imdb['runtimeMinutes'])
-films_rom_imdb = films_rom_imdb.loc[films_rom_imdb['runtimeMinutes'] >= 60]
-
-films_rom_tmdb = df_tmdb.loc[df_tmdb['genres'].str.contains('Romance')]
-
-films_rom_tmdb = films_rom_tmdb.loc[films_rom_tmdb['runtime'] >= 60]
-
-films_select = films_rom_tmdb.loc[films_rom_tmdb['popularite_ponderee'] >= 6]
-
-films_full = pd.merge(films_rom_imdb, films_select, how='inner', right_on= 'imdb_id', left_on= 'tconst')
-
-films_rom = films_full.loc[films_full['popularite_ponderee'] >= 6.45]
-
-films_rom.drop(['tconst', 'primaryTitle', 'endYear', 'backdrop_path', 'budget',
-                'homepage', 'imdb_id', 'original_language', 'original_title',
-                'overview','popularity','production_countries', 'tagline',
-                'video', 'vote_average', 'vote_count',
-                'production_companies_name', 'runtimeMinutes', 'genres_x',
-                'production_companies_country', 'release_date', 'revenue', 'titleType', 'title'], axis = 1, inplace=True)
-
-films_rom.sort_values(by= 'popularite_ponderee', ascending= False)
+        
+#Affiche des films
+films_rom = pd.read_csv("C:/Users/HP/Documents/Wild Code School/Hackathon/Happy Valentines Day/Happy Valentines Day/films_rom.csv")
 
 df_0 = films_rom.loc[films_rom['popularite_ponderee'] > 7.5]
 
@@ -140,6 +120,8 @@ df_40 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.608) & (films_rom['p
 df_60 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.51) & (films_rom['popularite_ponderee'] <= 6.607)]
 
 df_80 = films_rom.loc[films_rom['popularite_ponderee'] < 6.51]
+
+
 
 # Affichage en fonction de la similarité
 if similarity < 0.19:
