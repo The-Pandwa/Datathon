@@ -29,6 +29,9 @@ df_final_speed_dating = pd.read_csv(link)
 # Création de la sidebar et features
 st.sidebar.title('Votre taux de compatibilité :')
 
+#Création d'un titre
+st.markdown("<h2 style='text-align: center; color: red;'>Perfect Match</h2>", unsafe_allow_html=True)
+
 # Afficher les résultats
 col1, col2 = st.columns([1, 1], gap="large")
 
