@@ -71,71 +71,71 @@ with col2:
 user_1_input = np.array([[dining_1, gaming_1, clubbing_1, reading_1, shopping_1, Sports_1, Art_1, Musique_1, TV_Cinema_1]])
 # Préparer les données pour le modèle
 user_2_input = np.array([[dining_2, gaming_2, clubbing_2, reading_2, shopping_2, Sports_2, Art_2, Musique_2, TV_Cinema_2]])
-
-X = df_final_speed_dating[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']]
-y = df_final_speed_dating['match']
-
-# Système de recommandation
-st.write("Voici nos recommandations en fonction des critères choisis :")
-
-# Division des données en ensemble d'entraînement et ensemble de test
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=36, train_size=0.75)
-
-# Sélection des caractéristiques choisies par l'utilisateur pour l'entraînement
-selected_features = ['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']
-X_selected = df_final_speed_dating[selected_features]
-X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected, y, random_state=36, train_size=0.75)
-
-# Entraînement du modèle de régression logistique
-model = LogisticRegression().fit(X_train, y_train)
-
-# Probabilité de prédiction pour les classes
-resultat =[]
-for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
-    resultat.append(j)
-if resultat[0]>resultat[1]:
-    st.write("Pas Match Aîe aîe aîe, ça sent le sapin entre vous !")
-else:
-    st.write("Match Chaude soirée en perspective !")
-
-# Calcul de la similarité cosinus entre les deux utilisateurs
-similarity = cosine_similarity(user_1_input, user_2_input)
-percent_similarity = st.sidebar.write("Vous êtes cosinusement connecté :", similarity[0][0])
-        
-#Affiche des films
-films_rom = pd.read_csv("https://raw.githubusercontent.com/The-Pandwa/Datathon/main/films_rom.csv")
-
-# Système de recommandation
-st.write("Voici nos recommandations :")
-
-# Création des DF en fonction de conditions par popularité
-
-df_0 = films_rom.loc[films_rom['Note'] > 7.5]
-df_20 = films_rom.loc[(films_rom['Note'] > 6.8) & (films_rom['Note'] <= 7.5)]
-df_40 = films_rom.loc[(films_rom['Note'] > 6.608) & (films_rom['Note'] <= 6.8)]
-df_60 = films_rom.loc[(films_rom['Note'] > 6.51) & (films_rom['Note'] <= 6.607)]
-df_80 = films_rom.loc[films_rom['Note'] < 6.51]
-
-# Fonction pour affichage des poster de films
-def recommandation(df):
-    col0, col1= st.columns(2)
-    with col0:
-        full_link_0="https://image.tmdb.org/t/p/w500" +df['Affiche'].iloc[0]
-        st.image(full_link_0)
-        st.write(df['Titre'].iloc[0])
-    with col1:
-        full_link_1="https://image.tmdb.org/t/p/w500" +df['Affiche'].iloc[1]
-        st.image(full_link_1)
-        st.write(df['Titre'].iloc[1])
-
-# Affichage en fonction de la similarité
-if similarity < 0.19:
-    recommandation(df_0)
-elif 0.20 <= similarity < 0.39:
-    recommandation(df_20)
-elif 0.40 <= similarity < 0.59:
-    recommandation(df_40)
-elif 0.60 <= similarity < 0.79:
-    recommandation(df_60)
-else:
-    recommandation(df_80)
+if st.button("Vous matchez ou pas? "):
+    X = df_final_speed_dating[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']]
+    y = df_final_speed_dating['match']
+    
+    # Système de recommandation
+    st.write("Voici nos recommandations en fonction des critères choisis :")
+    
+    # Division des données en ensemble d'entraînement et ensemble de test
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=36, train_size=0.75)
+    
+    # Sélection des caractéristiques choisies par l'utilisateur pour l'entraînement
+    selected_features = ['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']
+    X_selected = df_final_speed_dating[selected_features]
+    X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected, y, random_state=36, train_size=0.75)
+    
+    # Entraînement du modèle de régression logistique
+    model = LogisticRegression().fit(X_train, y_train)
+    
+    # Probabilité de prédiction pour les classes
+    resultat =[]
+    for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
+        resultat.append(j)
+    if resultat[0]>resultat[1]:
+        st.write("Pas Match Aîe aîe aîe, ça sent le sapin entre vous !")
+    else:
+        st.write("Match Chaude soirée en perspective !")
+    
+    # Calcul de la similarité cosinus entre les deux utilisateurs
+    similarity = cosine_similarity(user_1_input, user_2_input)
+    percent_similarity = st.sidebar.write("Vous êtes cosinusement connecté :", similarity[0][0])
+            
+    #Affiche des films
+    films_rom = pd.read_csv("https://raw.githubusercontent.com/The-Pandwa/Datathon/main/films_rom.csv")
+    
+    # Système de recommandation
+    st.write("Voici nos recommandations :")
+    
+    # Création des DF en fonction de conditions par popularité
+    
+    df_0 = films_rom.loc[films_rom['Note'] > 7.5]
+    df_20 = films_rom.loc[(films_rom['Note'] > 6.8) & (films_rom['Note'] <= 7.5)]
+    df_40 = films_rom.loc[(films_rom['Note'] > 6.608) & (films_rom['Note'] <= 6.8)]
+    df_60 = films_rom.loc[(films_rom['Note'] > 6.51) & (films_rom['Note'] <= 6.607)]
+    df_80 = films_rom.loc[films_rom['Note'] < 6.51]
+    
+    # Fonction pour affichage des poster de films
+    def recommandation(df):
+        col0, col1= st.columns(2)
+        with col0:
+            full_link_0="https://image.tmdb.org/t/p/w500" +df['Affiche'].iloc[0]
+            st.image(full_link_0)
+            st.write(df['Titre'].iloc[0])
+        with col1:
+            full_link_1="https://image.tmdb.org/t/p/w500" +df['Affiche'].iloc[1]
+            st.image(full_link_1)
+            st.write(df['Titre'].iloc[1])
+    
+    # Affichage en fonction de la similarité
+    if similarity < 0.19:
+        recommandation(df_0)
+    elif 0.20 <= similarity < 0.39:
+        recommandation(df_20)
+    elif 0.40 <= similarity < 0.59:
+        recommandation(df_40)
+    elif 0.60 <= similarity < 0.79:
+        recommandation(df_60)
+    else:
+        recommandation(df_80)
