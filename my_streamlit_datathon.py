@@ -86,7 +86,7 @@ tmdb_full_cleaned_2 = pd.read_csv(link11)
 
 df_tmdb = pd.concat([tmdb_full_cleaned_1, tmdb_full_cleaned_2]) 
 
-link3 = '/content/drive/MyDrive/Datathon/title_basics_cleaned.csv'
+link3 = 'https://raw.githubusercontent.com/The-Pandwa/Datathon/main/title_basics_cleaned.csv'
 df_imdb = pd.read_csv(link3)
 
 df_imdb.loc[df_imdb['originalTitle'].str.contains('Amélie')]
