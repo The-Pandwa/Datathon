@@ -94,7 +94,7 @@ if st.button("Vous matchez ou pas? "):
     model = LogisticRegression().fit(X_train, y_train)
     
     # Probabilité de prédiction pour les classes
-    compa_couple = [(x + y) / 2 for x, y in zip(user_1_input, user_2_input)]
+    compa_couple = [(x + y) / 2 for x, y in zip(user_1_input_list, user_2_input_list)]
     compa_couple = [int(moyenne) for moyenne in compa_couple]
     
     if model.predict([compa_couple]) == 0:
