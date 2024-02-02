@@ -39,7 +39,7 @@ import gdown
 
 # Remplacez 'YOUR_FILE_ID' par l'ID réel de votre fichier dans Google Drive
 file_id = '1CoxPUZvxdkeP75tgqElj0VkQ6NDcRLnP'
-output_path = '/tmp/my_image.jpg'  # Chemin où télécharger l'image localement
+output_path = '/tmp/my_image.png'  # Chemin où télécharger l'image localement
 
 # Construire l'URL de téléchargement depuis Google Drive
 url = f'https://drive.google.com/uc?id={file_id}'
@@ -48,7 +48,7 @@ url = f'https://drive.google.com/uc?id={file_id}'
 gdown.download(url, output_path, quiet=False)
 
 # Afficher l'image avec Streamlit
-st.sidebar.image(output_path, caption="Votre Image depuis Google Drive", use_column_width=True)
+st.image(output_path, caption="Votre Image depuis Google Drive", use_column_width=True)
 
 # # Afficher les résultats
 col1, col2 = st.columns([1, 1], gap="large")
