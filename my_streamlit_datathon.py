@@ -90,19 +90,17 @@ X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected
 model = LogisticRegression().fit(X_train, y_train)
 
 # Probabilité de prédiction pour les classes
-for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
-    print("Probabilité de prédiction pour la classe", i, ":", j)
+    resultat =[]
+    for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
+        resultat.append(j)
+    if resultat[0]>resultat[1]:
+        st.write("Pas Match Aîe aîe aîe, ça sent le sapin entre vous !")
+    else:
+        st.write("Match Chaude soirée en perspective !")
 
 # Calcul de la similarité cosinus entre les deux utilisateurs
 similarity = cosine_similarity(user_1_input, user_2_input)
 percent_similarity = st.sidebar.write("Vous êtes cosinusement connecté :", similarity[0][0])
-
-# Vérification si percent_similarity est None
-if percent_similarity is not None:
-    if percent_similarity < 0.5:
-        st.sidebar.write('Aîe aîe aîe, ça sent le sapin entre vous !')
-    elif percent_similarity >= 0.5:
-        st.sidebar.write('Chaude soirée en perspective !')
         
 #Affiche des films
 films_rom = pd.read_csv("https://raw.githubusercontent.com/The-Pandwa/Datathon/main/films_rom.csv")
