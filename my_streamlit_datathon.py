@@ -67,9 +67,9 @@ user_1_input = np.array([[dining_1, gaming_1, clubbing_1, reading_1, shopping_1,
 user_2_input = np.array([[dining_2, gaming_2, clubbing_2, reading_2, shopping_2, Sports_2, Art_2, Musique_2, TV_Cinema_2]])
 
 # 
-X = df_final[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports',
+X = df_final_speed_dating[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports',
               'Art', 'Musique', 'TV_Cinema']]
-y = df_final['match']
+y = df_final_speed_dating['match']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state= 36, train_size = 0.75)
 
