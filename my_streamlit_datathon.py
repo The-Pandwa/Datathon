@@ -152,3 +152,6 @@ def recommandation(df):
         st.image(full_link_1)
         imdb_link_1 = "https://www.imdb.com/title/"+films_rom['imdb_id'][1]
         st.write(f"[{ recommandation['originalTitle'][2]}]({imdb_link_1})")
+
+if DF == "main":
+    main()
