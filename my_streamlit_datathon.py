@@ -161,5 +161,5 @@ def recommandation(df_tmdb):
         imdb_link_1 = "https://www.imdb.com/title/"+films_rom['imdb_id'][1]
         st.write(f"[{ recommandation['originalTitle'][1]}]({imdb_link_1})")
 
-if __name__ == "__main__":
+if __name__ == "__df_tmdb__":
     main()
