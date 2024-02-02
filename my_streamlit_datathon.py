@@ -8,6 +8,14 @@ Original file is located at
 
 #Streamlit
 """
+# Import Library
+import streamlit as st
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics.pairwise import cosine_similarity
+
 
 # Définir la couleur de fond en utilisant HTML et CSS
 background_color = """
@@ -18,15 +26,6 @@ background_color = """
     </style>
 """
 st.markdown(background_color, unsafe_allow_html=True)
-
-
-# Import Library
-import streamlit as st
-import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics.pairwise import cosine_similarity
 
 # Import dataset
 link = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/df_final_speed_dating_test.csv"
