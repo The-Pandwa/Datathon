@@ -30,7 +30,7 @@ from sklearn.metrics import accuracy_score, r2_score
 
 # # Import dataset
 link = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/df_final_speed_dating_test.csv"
-df_final_speed_dating = pd.read_csv(link, error_bad_lines=False)
+df_final_speed_dating = pd.read_csv(link)
 
 # Création de la sidebar et features
 st.sidebar.title('Votre taux de compatibilité :')
