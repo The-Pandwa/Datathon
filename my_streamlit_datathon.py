@@ -82,7 +82,7 @@ X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected
 model = LogisticRegression().fit(X_train, y_train)
 
 # Calcul de la similarité cosinus entre les deux utilisateurs
-similarity = 100*cosine_similarity(user_1_input, user_2_input).round(0)
+similarity = cosine_similarity(user_1_input, user_2_input)
 percent_similarity = st.sidebar.write("Vous êtes cosinusement connecté :", similarity[0][0])
 
 # Vérification si percent_similarity est None
