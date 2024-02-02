@@ -86,15 +86,22 @@ if st.button("Vous matchez ou pas? "):
     compa_couple = [(x + y) / 2 for x, y in zip(user_1_input_list, user_2_input_list)]
 
     if model.predict([compa_couple]) == 0:
-      print("Aïe, aïe, aïe... Ça sent le sapin entre vous.")
+      st.markdown("<h4 style='text-align: center; color: green;'>Aie Aie Aie ca sent le sapin !</h4>", unsafe_allow_html=True)
     elif model.predict([compa_couple]) == 1:
-      print("Chaude soirée en perspective !")
+      st.markdown("<h4 style='text-align: center; color: red;'>CA MATCH !</h4>", unsafe_allow_html=True)
     else:
-      print("Entrez des valeurs valides, s'il vous plaît.")
+      st.write("Entrez des valeurs valides, s'il vous plaît.")
     
     # Calcul de la similarité cosinus entre les deux utilisateurs
     similarity = cosine_similarity(user_1_input, user_2_input)
     percent_similarity = st.sidebar.write(similarity[0][0])
+
+    # Vérification si percent_similarity est None
+    if percent_similarity is not None:
+        if percent_similarity < 0.5:
+            st.sidebar.write('Aîe aîe aîe, ça sent le sapin entre vous !')
+        elif percent_similarity >= 0.5:
+            st.sidebar.write('Chaude soirée en perspective !')
             
     #Affiche des films
     films_rom = pd.read_csv("https://raw.githubusercontent.com/The-Pandwa/Datathon/main/films_rom.csv")
@@ -111,16 +118,18 @@ if st.button("Vous matchez ou pas? "):
     
     # Fonction pour affichage des poster de films
     def recommandation(df):
+
         col0, col1= st.columns(2)
+
         with col0:
             full_link_0="https://image.tmdb.org/t/p/w500" +df['Affiche'].iloc[0]
-            st.image(full_link_0)
+            st.image(full_link_0,output_format="auto")
             st.write(df['Titre'].iloc[0])
         with col1:
             full_link_1="https://image.tmdb.org/t/p/w500" +df['Affiche'].iloc[1]
-            st.image(full_link_1)
+            st.image(full_link_1,output_format="auto")
             st.write(df['Titre'].iloc[1])
-    
+
     # Affichage en fonction de la similarité
     if similarity < 0.19:
         recommandation(df_0)
