@@ -96,6 +96,7 @@ if st.button("Vous matchez ou pas? "):
     # Probabilité de prédiction pour les classes
     compa_couple = [(x + y) / 2 for x, y in zip(user_1_input_list, user_2_input_list)]
     compa_couple = [int(moyenne) for moyenne in compa_couple]
+    st.write(compa_couple)
     if model.predict([compa_couple]) == 0:
       print("Aïe, aïe, aïe... Ça sent le sapin entre vous.")
     elif model.predict([compa_couple]) == 1:
