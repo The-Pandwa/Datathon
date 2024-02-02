@@ -72,12 +72,12 @@ X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected
 model = LogisticRegression().fit(X_train, y_train)
 
 # Probabilité de prédiction pour les classes
-for i, j in zip(model.classes_, model.predict_proba(X_test)[0].round(2)*100):
+for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
     st.write("Probabilité de prédiction pour la classe", i, ":", j)
 
 # Calcul de la similarité cosinus entre les deux utilisateurs
 similarity = cosine_similarity(user_1_input, user_2_input)
-st.sidebar.write("Similarité cosinus entre les deux utilisateurs :", similarity[0][0].round(2)
+st.sidebar.write("Similarité cosinus entre les deux utilisateurs :", similarity[0][0].round(2))
 
 
 link1 = '/content/drive/MyDrive/Datathon/tmdb_full_cleaned.csv'
