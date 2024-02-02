@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 import sklearn
 import gdown
 from sklearn.model_selection import train_test_split
-# from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import LinearRegression
 # from sklearn.neighbors import KNeighborsClassifier
 # from sklearn.neighbors import NearestNeighbors
@@ -28,25 +28,12 @@ from sklearn.metrics import accuracy_score, r2_score
 # from sklearn.model_selection import cross_val_score
 # from sklearn.metrics import confusion_matrix
 
-# # Import dataset
+# Import dataset
 link = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/df_final_speed_dating_test.csv"
 df_final_speed_dating = pd.read_csv(link)
 
 # Création de la sidebar et features
 st.sidebar.title('Votre taux de compatibilité :')
-
-# # Remplacez 'YOUR_FILE_ID' par l'ID réel de votre fichier dans Google Drive
-# file_id = '1CoxPUZvxdkeP75tgqElj0VkQ6NDcRLnP'
-# output_path = 'mon_image.jpg'  # Chemin où télécharger l'image localement
-
-# # Construire l'URL de téléchargement depuis Google Drive
-# url = f'https://drive.google.com/uc?id={file_id}'
-
-# # Télécharger l'image localement
-# gdown.download(url, output_path, quiet=False)
-
-# # Afficher l'image avec Streamlit
-# st.image(output_path, caption="Votre Image depuis Google Drive", use_column_width=True)
 
 # # Afficher les résultats
 col1, col2 = st.columns([1, 1], gap="large")
@@ -118,8 +105,6 @@ similarity
 # Système de recommandation :
 st.write("Voici nos recommandations en fonction des critères choisis :")
 
-# Interface visuel
-# Voir live coding Florent sur Streamlit pour arranger le visuel des reco films
 
 def recommandation(df):
 
