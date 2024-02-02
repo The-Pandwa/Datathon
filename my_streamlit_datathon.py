@@ -92,7 +92,7 @@ tmdb_full_cleaned_1 = pd.read_csv(link10)
 link11 = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/tmdb_full_cleaned_2.csv"
 tmdb_full_cleaned_2 = pd.read_csv(link11)
 
-df_tmdb = pd.concat([tmdb_full_cleaned_1, tmdb_full_cleaned_2]) 
+df_tmdb = pd.concat([tmdb_full_cleaned_1, tmdb_full_cleaned_2])
 
 link3 = 'https://raw.githubusercontent.com/The-Pandwa/Datathon/main/title_basics_cleaned.csv'
 df_imdb = pd.read_csv(link3)
