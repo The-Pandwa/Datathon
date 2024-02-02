@@ -34,6 +34,9 @@ from sklearn.metrics import accuracy_score, r2_score
 # Création de la sidebar et features
 st.sidebar.title('Votre taux de compatibilité :')
 
+# # Afficher les résultats
+col1, col2 = st.columns([1, 1], gap="large")
+
 with col1:
   st.write("Choix du premier partenaire:")
   dining_1 = st.slider("Dining (Partenaire 1)", min_value=0, max_value=10, value=None, step=1)
