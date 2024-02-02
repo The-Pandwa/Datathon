@@ -27,7 +27,7 @@ link = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/df_final_spee
 df_final_speed_dating = pd.read_csv(link)
 
 # Création de la sidebar et features
-st.sidebar.title('Votre taux de compatibilité :')
+st.sidebar.title('Votre taux de similarité :')
 
 #Création d'un titre
 st.markdown("<h2 style='text-align: center; color: red;'>Perfect Match</h2>", unsafe_allow_html=True)
@@ -37,6 +37,8 @@ col1, col2 = st.columns([1, 1], gap="large")
 
 #Texte intro
 st.write("Perfect Match vous souhaite la bienvenue !\n Amis vagabond vous laisserez vous tenter par la plus belle des divinations ?")
+
+st.title('This is a title')
 
 # # Ajouter une image en haut de la colonne
 # image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
