@@ -33,7 +33,7 @@ st.sidebar.title('Votre taux de compatibilité :')
 col1, col2 = st.columns([1, 1], gap="large")
 
 #Texte intro
-
+st.write("Perfect Match vous souhaite la bienvenue !\n Amis vagabond vous laisserez vous tenter par la plus belle des divinations ?")
 
 # # Ajouter une image en haut de la colonne
 # image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
