@@ -31,29 +31,6 @@ from sklearn.metrics import accuracy_score, r2_score
 # link = "https://github.com/The-Pandwa/Datathon/blob/main/df_final_speed_dating_test.csv"
 # df_final_speed_dating = pd.read_csv(link)
 
-# URL de l'image sur GitHub
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
-
-# Configurer l'authentification Google Drive
-gauth = GoogleAuth()
-gauth.LocalWebserverAuth()  # Générer un jeton d'authentification en utilisant une page Web locale
-
-# Créer une instance de GoogleDrive avec l'authentification
-drive = GoogleDrive(gauth)
-
-# ID du fichier image sur Google Drive
-file_id = '1CoxPUZvxdkeP75tgqElj0VkQ6NDcRLnP'
-
-# Télécharger le fichier depuis Google Drive
-file = drive.CreateFile({'id': file_id})
-file.GetContentFile('coeur.png')  # Nom du fichier de destination
-
-# Afficher l'image dans Streamlit
-image = st.image('coeur.png', caption='Image depuis Google Drive', use_column_width=True)
-
-# Vous pouvez maintenant utiliser 'image' comme n'importe quelle autre image dans Streamlit
-
 # Afficher l'image dans la barre latérale
 st.sidebar.image(github_image_url, use_column_width=True)
 
