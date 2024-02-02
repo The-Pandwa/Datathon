@@ -156,9 +156,9 @@ selected_features = ['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Spo
 X_selected = df_final_speed_dating[selected_features]
 X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected, y, random_state=36, train_size=0.75)
 
-st.write("La taille de l'ensemble de données initial est :", len(X))
-st.write("La taille de l'ensemble d'entraînement est   :", len(X_train))
-st.write("La taille de l'ensemble de test est         :", len(X_test))
+# st.write("La taille de l'ensemble de données initial est :", len(X))
+# st.write("La taille de l'ensemble d'entraînement est   :", len(X_train))
+# st.write("La taille de l'ensemble de test est         :", len(X_test))
 
 # Entraînement du modèle de régression logistique
 model = LogisticRegression().fit(X_train, y_train)
