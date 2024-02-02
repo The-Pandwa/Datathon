@@ -32,17 +32,27 @@ st.sidebar.title('Votre taux de compatibilité :')
 # Afficher les résultats
 col1, col2 = st.columns([1, 1], gap="large")
 
+# Lien de l'image pour chaque partenaire
+images_partenaire_1 = {
+    "Dining": "https://cdn.pixabay.com/photo/2023/05/15/14/02/cat-7995160_1280.jpg",
+    "Gaming": "https://cdn.pixabay.com/photo/2023/05/15/14/02/cat-7995160_1280.jpg",
+    "Clubbing": "https://cdn.pixabay.com/photo/2023/05/15/14/02/cat-7995160_1280.jpg",
+    "Reading": "https://cdn.pixabay.com/photo/2023/05/15/14/02/cat-7995160_1280.jpg",
+    "Shopping": "https://cdn.pixabay.com/photo/2023/05/15/14/02/cat-7995160_1280.jpg",
+    "Sports": "https://cdn.pixabay.com/photo/2023/05/15/14/02/cat-7995160_1280.jpg",
+    "Art": "https://cdn.pixabay.com/photo/2023/05/15/14/02/cat-7995160_1280.jpg",
+    "Musique": "https://cdn.pixabay.com/photo/2023/05/15/14/02/cat-7995160_1280.jpg",
+    "TV Cinema": "https://cdn.pixabay.com/photo/2023/05/15/14/02/cat-7995160_1280.jpg",
+}
+
+# Afficher les images pour chaque slicer
 with col1:
     st.write("Choix du premier partenaire:")
-    dining_1 = st.slider("Dining (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    gaming_1 = st.slider("Gaming (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    clubbing_1 = st.slider("Clubbing (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    reading_1 = st.slider("Reading (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    shopping_1 = st.slider("Shopping (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    Sports_1 = st.slider("Sports (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    Art_1 = st.slider("Art (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    Musique_1 = st.slider("Musique (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    TV_Cinema_1 = st.slider("TV Cinema (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
+    
+    for category, image_link in images_partenaire_1.items():
+        st.slider(f"{category} (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
+        st.image(image_link, caption=category, use_column_width=True)
+
 
 with col2:
     st.write("Choix du second partenaire:")
