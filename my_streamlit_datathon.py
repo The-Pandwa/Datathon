@@ -79,7 +79,7 @@ for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
 similarity = cosine_similarity(user_1_input, user_2_input)
 st.sidebar.write("Similarité cosinus entre les deux utilisateurs :", similarity[0][0])
 
-link10 = "/content/drive/MyDrive/Datathon/tmdb_full_cleaned_1.csv"
+link10 = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/tmdb_full_cleaned_1.csv"
 tmdb_full_cleaned_1 = pd.read_csv(link10)
 link11 = "/content/drive/MyDrive/Datathon/tmdb_full_cleaned_2.csv"
 tmdb_full_cleaned_2 = pd.read_csv(link11)
