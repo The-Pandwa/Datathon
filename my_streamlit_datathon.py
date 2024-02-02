@@ -90,13 +90,19 @@ if st.button("Vous matchez ou pas? "):
     model = LogisticRegression().fit(X_train, y_train)
     
     # Probabilité de prédiction pour les classes
-    resultat =[]
-    for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
-        resultat.append(j)
-    if resultat[0]>resultat[1]:
-        st.write("Pas Match Aîe aîe aîe, ça sent le sapin entre vous !")
+    # resultat =[]
+    # for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
+    #     resultat.append(j)
+    # if resultat[0]>resultat[1]:
+    #     st.write("Pas Match Aîe aîe aîe, ça sent le sapin entre vous !")
+    # else:
+    #     st.write("Match Chaude soirée en perspective !")
+    if model.predict([compa_couple]) == 0:
+      print("Aïe, aïe, aïe... Ça sent le sapin entre vous.")
+    elif model.predict([compa_couple]) == 1:
+      print("C'est un MATCH !")
     else:
-        st.write("Match Chaude soirée en perspective !")
+      print("Entrez des valeurs valides, s'il vous plaît.")
     
     # Calcul de la similarité cosinus entre les deux utilisateurs
     similarity = cosine_similarity(user_1_input, user_2_input)
