@@ -37,7 +37,7 @@ st.sidebar.title('Votre taux de compatibilité :')
 
 # Remplacez 'YOUR_FILE_ID' par l'ID réel de votre fichier dans Google Drive
 file_id = '1CoxPUZvxdkeP75tgqElj0VkQ6NDcRLnP'
-output_path = 'https://drive.google.com/file/d/mon_image.png'  # Chemin où télécharger l'image localement
+output_path = 'mon_image.jpg'  # Chemin où télécharger l'image localement
 
 # Construire l'URL de téléchargement depuis Google Drive
 url = f'https://drive.google.com/uc?id={file_id}'
