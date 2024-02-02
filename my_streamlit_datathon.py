@@ -36,9 +36,7 @@ st.markdown("<h2 style='text-align: center; color: red;'>Perfect Match</h2>", un
 col1, col2 = st.columns([1, 1], gap="large")
 
 #Texte intro
-st.write("Perfect Match vous souhaite la bienvenue !\n Amis vagabond vous laisserez vous tenter par la plus belle des divinations ?")
-
-st.title('This is a title')
+st.title("Perfect Match vous souhaite la bienvenue !\n Amis de cupidon, oserez vous bravez les mystères de l'amour ?")
 
 # # Ajouter une image en haut de la colonne
 # image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
