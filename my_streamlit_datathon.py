@@ -98,7 +98,7 @@ if st.button("Vous matchez ou pas? "):
     # else:
     #     st.write("Match Chaude soirée en perspective !")
 
-    compa_couple = [(x + y) / 2 for x, y in zip(person_1, person_2)]
+    compa_couple = [(x + y) / 2 for x, y in zip(user_1_input, user_2_input)]
     compa_couple = [int(moyenne) for moyenne in compa_couple]
     
     if model.predict([compa_couple]) == 0:
