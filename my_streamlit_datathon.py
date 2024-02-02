@@ -85,7 +85,8 @@ model = LogisticRegression().fit(X_train, y_train)
 
 # Calcul de la similarité cosinus entre les deux utilisateurs
 similarity = cosine_similarity(user_1_input, user_2_input)
-st.sidebar.write("Similarité cosinus entre les deux utilisateurs :", similarity[0][0])
+percent_similarity = st.sidebar.write("Similarité cosinus entre les deux utilisateurs :", similarity[0][0])
+ 
 
 link10 = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/tmdb_full_cleaned_1.csv"
 tmdb_full_cleaned_1 = pd.read_csv(link10)
