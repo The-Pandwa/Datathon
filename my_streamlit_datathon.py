@@ -81,7 +81,7 @@ model = LogisticRegression().fit(X_train, y_train)
 
 # Probabilité de prédiction pour les classes
 for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
-    st.write("Probabilité de prédiction pour la classe", i, ":", j)
+    ("Probabilité de prédiction pour la classe", i, ":", j)
 
 # Calcul de la similarité cosinus entre les deux utilisateurs
 similarity = cosine_similarity(user_1_input, user_2_input)
