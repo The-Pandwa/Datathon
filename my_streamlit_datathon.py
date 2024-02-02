@@ -109,7 +109,7 @@ if percent_similarity is not None:
         st.sidebar.write('Chaude soirée en perspective !')
         
 #Affiche des films
-films_rom = pd.read_csv("C:/Users/HP/Documents/Wild Code School/Hackathon/Happy Valentines Day/Happy Valentines Day/films_rom.csv")
+films_rom = pd.read_csv("https://raw.githubusercontent.com/The-Pandwa/Datathon/main/films_rom.csv")
 
 df_0 = films_rom.loc[films_rom['popularite_ponderee'] > 7.5]
 
