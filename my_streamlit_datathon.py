@@ -132,3 +132,21 @@ similarity
 
 # # Interface visuel
 # # Voir live coding Florent sur Streamlit pour arranger le visuel des reco films
+
+# def recommandation(df):
+
+#     col0, col1= st.columns(2)
+
+
+#     with col0:
+#         full_link_0="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][0]
+#         st.image(full_link_0)
+#         imdb_link_0 = "https://www.imdb.com/title/"+films_rom['imdb_id'][0]
+#         st.write(f"[{ films_rom['originalTitle'][1]}]({imdb_link_0})")
+
+
+#     with col1:
+#         full_link_1="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][1]
+#         st.image(full_link_1)
+#         imdb_link_1 = "https://www.imdb.com/title/"+films_rom['imdb_id'][1]
+#         st.write(f"[{ recommandation['originalTitle'][2]}]({imdb_link_1})")
