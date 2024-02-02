@@ -17,7 +17,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics.pairwise import cosine_similarity
 
 # Lien de l'image
-lien_image = "https://cdn.pixabay.com/photo/2023/05/15/14/02/cat-7995160_1280.jpg"
+lien_image = "https://plus.unsplash.com/premium_photo-1671616724629-c2fa8455c28f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 
 # Afficher l'image
 st.sidebar.image(lien_image, caption='Légende optionnelle', use_column_width=True)
