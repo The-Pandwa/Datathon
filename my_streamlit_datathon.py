@@ -17,10 +17,10 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics.pairwise import cosine_similarity
 
 # Lien de l'image
-lien_image = "https://plus.unsplash.com/premium_photo-1671616724629-c2fa8455c28f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+lien_image = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
 
 # Afficher l'image
-st.sidebar.image(lien_image, caption='Légende optionnelle', use_column_width=True)
+st.sidebar.image(lien_image, use_column_width=True)
 
 # Import dataset
 link = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/df_final_speed_dating_test.csv"
