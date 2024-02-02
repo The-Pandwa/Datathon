@@ -67,59 +67,92 @@ user_1_input = np.array([[dining_1, gaming_1, clubbing_1, reading_1, shopping_1,
 # Préparer les données pour le modèle
 user_2_input = np.array([[dining_2, gaming_2, clubbing_2, reading_2, shopping_2, Sports_2, Art_2, Musique_2, TV_Cinema_2]])
 
-
-X = df_final_speed_dating[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports',
-              'Art', 'Musique', 'TV_Cinema']]
+X = df_final_speed_dating[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']]
 y = df_final_speed_dating['match']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state= 36, train_size = 0.75)
+# Division des données en ensemble d'entraînement et ensemble de test
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=36, train_size=0.75)
 
-# Sélectionner uniquement les caractéristiques choisies par l'utilisateur pour l'entraînement
+# Sélection des caractéristiques choisies par l'utilisateur pour l'entraînement
 selected_features = ['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']
 X_selected = df_final_speed_dating[selected_features]
 X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected, y, random_state=36, train_size=0.75)
 
-print("The length of the initial dataset is :", len(X))
-print("The length of the train dataset is   :", len(X_train))
-print("The length of the test dataset is    :", len(X_test))
+print("La taille de l'ensemble de données initial est :", len(X))
+print("La taille de l'ensemble d'entraînement est   :", len(X_train))
+print("La taille de l'ensemble de test est         :", len(X_test))
 
+# Entraînement du modèle de régression logistique
 model = LogisticRegression().fit(X_train, y_train)
 
-print("\nR2 score for the Train dataset :", model.score(X_train, y_train).round(2))
-print("R2 score for the Test dataset :", model.score(X_test, y_test).round(2))
+# Évaluation du modèle
+print("\nScore R2 pour l'ensemble d'entraînement :", model.score(X_train, y_train))
+print("Score R2 pour l'ensemble de test :", model.score(X_test, y_test))
 
-for i, j in zip(model.classes_, model.predict_proba(X_test)[0].round(2)*100):
-  print("Prediction probability for:", i, "is", j)
+# Probabilité de prédiction pour les classes
+for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
+    print("Probabilité de prédiction pour la classe", i, ":", j)
 
-person_1 = user_1_input
-person_2 = user_2_input
-compa_couple = [(x + y) / 2 for x, y in zip(person_1, person_2)]
-
-compa_couple = [int(moyenne) for moyenne in compa_couple]
-
-model.predict([compa_couple])
-
+# Calcul de la similarité cosinus entre les deux utilisateurs
 similarity = cosine_similarity(user_1_input, user_2_input)
-similarity
-
-# Système de recommandation :
-st.write("Voici nos recommandations en fonction des critères choisis :")
+print("Similarité cosinus entre les deux utilisateurs :", similarity)
 
 
-def recommandation(df):
-
-    col0, col1= st.columns(2)
 
 
-    with col0:
-        full_link_0="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][0]
-        st.image(full_link_0)
-        imdb_link_0 = "https://www.imdb.com/title/"+films_rom['imdb_id'][0]
-        st.write(f"[{ films_rom['originalTitle'][1]}]({imdb_link_0})")
+
+# X = df_final_speed_dating[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports',
+#               'Art', 'Musique', 'TV_Cinema']]
+# y = df_final_speed_dating['match']
+
+# X_train, X_test, y_train, y_test = train_test_split(X, y, random_state= 36, train_size = 0.75)
+
+# # Sélectionner uniquement les caractéristiques choisies par l'utilisateur pour l'entraînement
+# selected_features = ['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']
+# X_selected = df_final_speed_dating[selected_features]
+# X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected, y, random_state=36, train_size=0.75)
+
+# print("The length of the initial dataset is :", len(X))
+# print("The length of the train dataset is   :", len(X_train))
+# print("The length of the test dataset is    :", len(X_test))
+
+# model = LogisticRegression().fit(X_train, y_train)
+
+# print("\nR2 score for the Train dataset :", model.score(X_train, y_train))
+# print("R2 score for the Test dataset :", model.score(X_test, y_test))
+
+# for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
+#   print("Prediction probability for:", i, "is", j)
+
+# person_1 = user_1_input
+# person_2 = user_2_input
+# compa_couple = [(x + y) / 2 for x, y in zip(person_1, person_2)]
+
+# compa_couple = [int(moyenne) for moyenne in compa_couple]
+
+# model.predict([compa_couple])
+
+# similarity = cosine_similarity(user_1_input, user_2_input)
+# similarity
+
+# # Système de recommandation :
+# st.write("Voici nos recommandations en fonction des critères choisis :")
 
 
-    with col1:
-        full_link_1="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][1]
-        st.image(full_link_1)
-        imdb_link_1 = "https://www.imdb.com/title/"+films_rom['imdb_id'][1]
-        st.write(f"[{ recommandation['originalTitle'][2]}]({imdb_link_1})")
+# def recommandation(df):
+
+#     col0, col1= st.columns(2)
+
+
+#     with col0:
+#         full_link_0="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][0]
+#         st.image(full_link_0)
+#         imdb_link_0 = "https://www.imdb.com/title/"+films_rom['imdb_id'][0]
+#         st.write(f"[{ films_rom['originalTitle'][1]}]({imdb_link_0})")
+
+
+#     with col1:
+#         full_link_1="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][1]
+#         st.image(full_link_1)
+#         imdb_link_1 = "https://www.imdb.com/title/"+films_rom['imdb_id'][1]
+#         st.write(f"[{ recommandation['originalTitle'][2]}]({imdb_link_1})")
