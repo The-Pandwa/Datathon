@@ -30,13 +30,13 @@ df_final_speed_dating = pd.read_csv(link)
 st.sidebar.title('Votre taux de similarité :')
 
 #Création d'un titre
-st.markdown("<h2 style='text-align: center; color: red;'>Perfect Match</h2>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: red;'>Perfect Match</h1>", unsafe_allow_html=True)
 
 # Afficher les résultats
 col1, col2 = st.columns([1, 1], gap="large")
 
 #Texte intro
-st.title("Perfect Match vous souhaite la bienvenue !\n Amis de cupidon, oserez vous bravez les mystères de l'amour ?")
+st.sidebar.title("Perfect Match vous souhaite la bienvenue !\n Amis de cupidon, oserez vous bravez les mystères de l'amour ?")
 
 # # Ajouter une image en haut de la colonne
 # image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
@@ -96,7 +96,6 @@ if st.button("Vous matchez ou pas? "):
     # Probabilité de prédiction pour les classes
     compa_couple = [(x + y) / 2 for x, y in zip(user_1_input_list, user_2_input_list)]
     compa_couple = [int(moyenne) for moyenne in compa_couple]
-    
     if model.predict([compa_couple]) == 0:
       print("Aïe, aïe, aïe... Ça sent le sapin entre vous.")
     elif model.predict([compa_couple]) == 1:
@@ -115,7 +114,6 @@ if st.button("Vous matchez ou pas? "):
     st.write("Voici nos recommandations de films pour créer des moments inoubliables :")
     
     # Création des DF en fonction de conditions par popularité
-    
     df_0 = films_rom.loc[films_rom['Note'] > 7.5]
     df_20 = films_rom.loc[(films_rom['Note'] > 6.8) & (films_rom['Note'] <= 7.5)]
     df_40 = films_rom.loc[(films_rom['Note'] > 6.608) & (films_rom['Note'] <= 6.8)]
