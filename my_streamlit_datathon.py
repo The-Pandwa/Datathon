@@ -32,10 +32,12 @@ st.sidebar.title('Votre taux de compatibilité :')
 # Afficher les résultats
 col1, col2 = st.columns([1, 1], gap="large")
 
+lien_image = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
+st.col1.image(lien_image, use_column_width=True)
+lien_image = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
+st.col2.image(lien_image, use_column_width=True)
+
 with col1:
-    import streamlit as st
-    lien_image = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
-    st.col1.image(lien_image, use_column_width=True)
     st.write("Choix du second partenaire:")
     dining_1 =st.slider("Dining (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
     gaming_1 =st.slider("Gaming (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
@@ -49,9 +51,6 @@ with col1:
 
 
 with col2:
-    import streamlit as st
-    lien_image = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
-    st.col1.image(lien_image, use_column_width=True)
     st.write("Choix du second partenaire:")
     dining_2 =st.slider("Dining (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
     gaming_2 =st.slider("Gaming (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
