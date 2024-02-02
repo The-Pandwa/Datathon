@@ -116,8 +116,8 @@ print("R2 score for the Test dataset :", model.score(X_test, y_test).round(2))
 for i, j in zip(model.classes_, model.predict_proba(X_test)[0].round(2)*100):
   print("Prediction probability for:", i, "is", j)
 
-person_1 = [2,5,9,4,7,7,8,3,10]
-person_2 = [10,2,4,7,5,8,3,1,6]
+person_1 = user_1_input
+person_2 = user_2_input
 compa_couple = [(x + y) / 2 for x, y in zip(person_1, person_2)]
 
 compa_couple = [int(moyenne) for moyenne in compa_couple]
