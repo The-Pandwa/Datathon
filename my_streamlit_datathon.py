@@ -20,7 +20,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 lien_image = "https://cdn.pixabay.com/photo/2023/05/15/14/02/cat-7995160_1280.jpg"
 
 # Afficher l'image
-st.image(lien_image, caption='Légende optionnelle', use_column_width=True)
+st.sidebar.image(lien_image, caption='Légende optionnelle', use_column_width=True)
 
 # Import dataset
 link = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/df_final_speed_dating_test.csv"
