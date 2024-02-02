@@ -141,7 +141,7 @@ else:
 # Système de recommandation
 st.write("Voici nos recommandations en fonction des critères choisis :")
 
-def recommandation(df):
+def recommandation(df_tmdb):
 
     col0, col1= st.columns(2)
 
@@ -157,5 +157,5 @@ def recommandation(df):
         imdb_link_1 = "https://www.imdb.com/title/"+films_rom['imdb_id'][1]
         st.write(f"[{ recommandation['originalTitle'][2]}]({imdb_link_1})")
 
-if DF == "main":
+if __name__ == "__main__":
     main()
