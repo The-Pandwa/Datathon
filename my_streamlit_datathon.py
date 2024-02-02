@@ -77,13 +77,13 @@ for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
 
 # Calcul de la similarité cosinus entre les deux utilisateurs
 similarity = cosine_similarity(user_1_input, user_2_input)
-st.write("Similarité cosinus entre les deux utilisateurs :", similarity[0][0])
+st.sidebar.write("Similarité cosinus entre les deux utilisateurs :", similarity[0][0])
 
 
-link1 = '/content/drive/MyDrive/Crew Data BLEU [ADATAR]/PROJETS/PROJET 2/Basile, Clara, Costin/Data/Cleaned/tmdb_full_cleaned.csv'
+link1 = '/content/drive/MyDrive/Datathon/tmdb_full_cleaned.csv'
 df_tmdb = pd.read_csv(link1)
 
-link3 = '/content/drive/MyDrive/Crew Data BLEU [ADATAR]/PROJETS/PROJET 2/Basile, Clara, Costin/Data/Cleaned/title_basics_cleaned.csv'
+link3 = '/content/drive/MyDrive/Datathon/title_basics_cleaned.csv'
 df_imdb = pd.read_csv(link3)
 
 df_imdb.loc[df_imdb['originalTitle'].str.contains('Amélie')]
