@@ -163,9 +163,9 @@ st.write("La taille de l'ensemble de test est         :", len(X_test))
 # Entraînement du modèle de régression logistique
 model = LogisticRegression().fit(X_train, y_train)
 
-# Évaluation du modèle
-st.write("\nScore R2 pour l'ensemble d'entraînement :", model.score(X_train, y_train))
-st.write("Score R2 pour l'ensemble de test :", model.score(X_test, y_test))
+# # Évaluation du modèle
+# st.write("\nScore R2 pour l'ensemble d'entraînement :", model.score(X_train, y_train))
+# st.write("Score R2 pour l'ensemble de test :", model.score(X_test, y_test))
 
 # Probabilité de prédiction pour les classes
 for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
