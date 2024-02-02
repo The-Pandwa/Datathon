@@ -46,26 +46,26 @@ col1, col2 = st.columns([1, 1], gap="large")
 #Critères
 with col1:
     st.write("Choix du premier partenaire:")
-    dining_1 =st.slider("Dining (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    gaming_1 =st.slider("Gaming (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    clubbing_1 = st.slider("Clubbing (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    reading_1 =st.slider("Reading (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    shopping_1 =st.slider("Shopping (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    Sports_1 =st.slider("Sports (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    Art_1 =st.slider("Art (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    Musique_1 = st.slider("Musique(Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-    TV_Cinema_1 =st.slider("TV_Cinema (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
+    dining_1 =st.slider("Cuisine ", min_value=1, max_value=10, value=None, step=1)
+    gaming_1 =st.slider("Gaming ", min_value=1, max_value=10, value=None, step=1)
+    clubbing_1 = st.slider("Fêtard", min_value=1, max_value=10, value=None, step=1)
+    reading_1 =st.slider("Lecture", min_value=1, max_value=10, value=None, step=1)
+    shopping_1 =st.slider("Shopping", min_value=1, max_value=10, value=None, step=1)
+    Sports_1 =st.slider("Sports", min_value=1, max_value=10, value=None, step=1)
+    Art_1 =st.slider("Art", min_value=1, max_value=10, value=None, step=1)
+    Musique_1 = st.slider("Musique", min_value=1, max_value=10, value=None, step=1)
+    TV_Cinema_1 =st.slider("TV Cinema", min_value=1, max_value=10, value=None, step=1)
 with col2:
     st.write("Choix du second partenaire:")
-    dining_2 =st.slider("Dining (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
-    gaming_2 =st.slider("Gaming (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
-    clubbing_2 = st.slider("Clubbing (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
-    reading_2  =st.slider("Reading (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
-    shopping_2 =st.slider("Shopping (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
-    Sports_2 =st.slider("Sports (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
-    Art_2 =st.slider("Art (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
-    Musique_2 = st.slider("Musique(Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
-    TV_Cinema_2 =st.slider("TV_Cinema (Partenaire 2)", min_value=1, max_value=10, value=None, step=1)
+    dining_2 =st.slider("Cuisine ", min_value=1, max_value=10, value=None, step=1)
+    gaming_2 =st.slider("Gaming ", min_value=1, max_value=10, value=None, step=1)
+    clubbing_2 = st.slider("Fêtard", min_value=1, max_value=10, value=None, step=1)
+    reading_2 =st.slider("Lecture", min_value=1, max_value=10, value=None, step=1)
+    shopping_2 =st.slider("Shopping", min_value=1, max_value=10, value=None, step=1)
+    Sports_2 =st.slider("Sports", min_value=1, max_value=10, value=None, step=1)
+    Art_2 =st.slider("Art", min_value=1, max_value=10, value=None, step=1)
+    Musique_2 = st.slider("Musique", min_value=1, max_value=10, value=None, step=1)
+    TV_Cinema_2 =st.slider("TV Cinema", min_value=1, max_value=10, value=None, step=1)
 
 # Préparer les données pour le modèle
 user_1_input = np.array([[dining_1, gaming_1, clubbing_1, reading_1, shopping_1, Sports_1, Art_1, Musique_1, TV_Cinema_1]])
@@ -97,7 +97,7 @@ if st.button("Vous matchez ou pas? "):
     
     # Calcul de la similarité cosinus entre les deux utilisateurs
     similarity = cosine_similarity(user_1_input, user_2_input)
-    percent_similarity = st.sidebar.write("Vous êtes cosinusement connecté :", similarity[0][0])
+    percent_similarity = st.sidebar.write(similarity[0][0])
             
     #Affiche des films
     films_rom = pd.read_csv("https://raw.githubusercontent.com/The-Pandwa/Datathon/main/films_rom.csv")
