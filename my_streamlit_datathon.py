@@ -28,8 +28,8 @@ from sklearn.metrics import accuracy_score, r2_score
 # from sklearn.metrics import confusion_matrix
 
 # Import dataset
-# link = "https://github.com/The-Pandwa/Datathon/blob/main/df_final_speed_dating_test.csv"
-# df_final_speed_dating = pd.read_csv(link)
+link = "https://github.com/The-Pandwa/Datathon/blob/main/df_final_speed_dating_test.csv"
+df_final_speed_dating = pd.read_csv(link)
 
 # Création de la sidebar et features
 st.sidebar.title('Votre taux de compatibilité :')
@@ -75,7 +75,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, random_state= 36, trai
 
 # Sélectionner uniquement les caractéristiques choisies par l'utilisateur pour l'entraînement
 selected_features = ['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']
-X_selected = df_final[selected_features]
+X_selected = df_final_speed_dating[selected_features]
 X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected, y, random_state=36, train_size=0.75)
 
 print("The length of the initial dataset is :", len(X))
