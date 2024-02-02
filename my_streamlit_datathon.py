@@ -35,18 +35,18 @@ from sklearn.metrics import accuracy_score, r2_score
 # Création de la sidebar et features
 st.sidebar.title('Votre taux de compatibilité :')
 
-# Remplacez 'YOUR_FILE_ID' par l'ID réel de votre fichier dans Google Drive
-file_id = '1CoxPUZvxdkeP75tgqElj0VkQ6NDcRLnP'
-output_path = 'mon_image.jpg'  # Chemin où télécharger l'image localement
+# # Remplacez 'YOUR_FILE_ID' par l'ID réel de votre fichier dans Google Drive
+# file_id = '1CoxPUZvxdkeP75tgqElj0VkQ6NDcRLnP'
+# output_path = 'mon_image.jpg'  # Chemin où télécharger l'image localement
 
-# Construire l'URL de téléchargement depuis Google Drive
-url = f'https://drive.google.com/uc?id={file_id}'
+# # Construire l'URL de téléchargement depuis Google Drive
+# url = f'https://drive.google.com/uc?id={file_id}'
 
-# Télécharger l'image localement
-gdown.download(url, output_path, quiet=False)
+# # Télécharger l'image localement
+# gdown.download(url, output_path, quiet=False)
 
-# Afficher l'image avec Streamlit
-st.image(output_path, caption="Votre Image depuis Google Drive", use_column_width=True)
+# # Afficher l'image avec Streamlit
+# st.image(output_path, caption="Votre Image depuis Google Drive", use_column_width=True)
 
 # # Afficher les résultats
 col1, col2 = st.columns([1, 1], gap="large")
