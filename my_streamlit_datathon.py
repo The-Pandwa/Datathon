@@ -29,17 +29,8 @@ from sklearn.metrics import accuracy_score, r2_score
 # from sklearn.metrics import confusion_matrix
 
 # # Import dataset
-link = "https://github.com/The-Pandwa/Datathon/blob/main/df_final_speed_dating_test.csv"
+link = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/my_streamlit_datathon.py"
 df_final_speed_dating = pd.read_csv(link)
-
-# URL du fichier CSV sur GitHub
-github_url = "https://raw.githubusercontent.com/username/repository/main/fichier.csv"
-
-# Charger le fichier CSV dans un DataFrame pandas
-df = pd.read_csv(github_url)
-
-# Afficher le DataFrame dans Streamlit
-st.dataframe(df)
 
 # Création de la sidebar et features
 st.sidebar.title('Votre taux de compatibilité :')
