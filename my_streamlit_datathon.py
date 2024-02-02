@@ -35,13 +35,13 @@ col1, col2 = st.columns([1, 1], gap="large")
 #Texte intro
 
 
-# Ajouter une image en haut de la colonne
-image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
-st.image.col1(image_url, use_column_width=True)
+# # Ajouter une image en haut de la colonne
+# image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
+# st.image.col1(image_url, use_column_width=True)
 
-# Ajouter une image en haut de la colonne
-image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
-st.image.col2(image_url, use_column_width=True)
+# # Ajouter une image en haut de la colonne
+# image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
+# st.image.col2(image_url, use_column_width=True)
 
 #Critères
 with col1:
