@@ -48,7 +48,7 @@ url = f'https://drive.google.com/uc?id={file_id}'
 gdown.download(url, output_path, quiet=False)
 
 # Afficher l'image avec Streamlit
-st.image(output_path, caption="Votre Image depuis Google Drive", use_column_width=True)
+st.sidebar.image(output_path, caption="Votre Image depuis Google Drive", use_column_width=True)
 
 # # Afficher les résultats
 col1, col2 = st.columns([1, 1], gap="large")
