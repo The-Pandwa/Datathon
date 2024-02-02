@@ -9,6 +9,16 @@ Original file is located at
 #Streamlit
 """
 
+# Définir la couleur de fond en utilisant HTML et CSS
+background_color = """
+    <style>
+        body {
+            background-color: #add8e6; /* Bleu clair */
+        }
+    </style>
+"""
+st.markdown(background_color, unsafe_allow_html=True)
+
 
 # Import Library
 import streamlit as st
