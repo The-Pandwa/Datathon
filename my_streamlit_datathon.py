@@ -32,8 +32,10 @@ st.sidebar.title('Votre taux de compatibilité :')
 # Afficher les résultats
 col1, col2 = st.columns([1, 1], gap="large")
 
+#Texte intro
+
 with col1:
-    st.write("Choix du second partenaire:")
+    st.write("Choix du premier partenaire:")
     dining_1 =st.slider("Dining (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
     gaming_1 =st.slider("Gaming (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
     clubbing_1 = st.slider("Clubbing (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
@@ -80,7 +82,7 @@ X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected
 model = LogisticRegression().fit(X_train, y_train)
 
 # Calcul de la similarité cosinus entre les deux utilisateurs
-similarity = cosine_similarity(user_1_input, user_2_input)
+similarity = 100*cosine_similarity(user_1_input, user_2_input).round(0)
 percent_similarity = st.sidebar.write("Vous êtes cosinusement connecté :", similarity[0][0])
 
 # Vérification si percent_similarity est None
