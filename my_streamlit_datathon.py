@@ -18,9 +18,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 # Lien de l'image
 lien_image = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
-
 # Afficher l'image
 st.sidebar.image(lien_image, use_column_width=True)
+
+#Création d'un titre
+st.markdown("<h1 style='text-align: center; color: red;'>Perfect Match</h1>", unsafe_allow_html=True)
 
 # Import dataset
 link = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/df_final_speed_dating_test.csv"
@@ -28,23 +30,9 @@ df_final_speed_dating = pd.read_csv(link)
 
 # Création de la sidebar et features
 st.sidebar.title('Votre taux de similarité :')
-
-#Création d'un titre
-st.markdown("<h1 style='text-align: center; color: red;'>Perfect Match</h1>", unsafe_allow_html=True)
-
+    
 # Afficher les résultats
 col1, col2 = st.columns([1, 1], gap="large")
-
-#Texte intro
-st.sidebar.write("Perfect Match vous souhaite la bienvenue !\n Amis de cupidon, oserez vous bravez les mystères de l'amour ?")
-
-# # Ajouter une image en haut de la colonne
-# image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
-# st.image.col1(image_url, use_column_width=True)
-
-# # Ajouter une image en haut de la colonne
-# image_url = "https://images.pexels.com/photos/704748/pexels-photo-704748.jpeg"
-# st.image.col2(image_url, use_column_width=True)
 
 #Critères
 with col1:
@@ -78,6 +66,7 @@ user_2_input = np.array([[dining_2, gaming_2, clubbing_2, reading_2, shopping_2,
 user_1_input_list = [dining_1, gaming_1, clubbing_1, reading_1, shopping_1, Sports_1, Art_1, Musique_1, TV_Cinema_1]
 # Préparer les données pour le modèle
 user_2_input_list = [dining_2, gaming_2, clubbing_2, reading_2, shopping_2, Sports_2, Art_2, Musique_2, TV_Cinema_2]
+
 if st.button("Vous matchez ou pas? "):
     X = df_final_speed_dating[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']]
     y = df_final_speed_dating['match']
@@ -95,12 +84,11 @@ if st.button("Vous matchez ou pas? "):
     
     # Probabilité de prédiction pour les classes
     compa_couple = [(x + y) / 2 for x, y in zip(user_1_input_list, user_2_input_list)]
-    compa_couple = [int(moyenne) for moyenne in compa_couple]
-    st.write(compa_couple)
+
     if model.predict([compa_couple]) == 0:
       print("Aïe, aïe, aïe... Ça sent le sapin entre vous.")
     elif model.predict([compa_couple]) == 1:
-      print("C'est un MATCH !")
+      print("Chaude soirée en perspective !")
     else:
       print("Entrez des valeurs valides, s'il vous plaît.")
     
@@ -112,7 +100,7 @@ if st.button("Vous matchez ou pas? "):
     films_rom = pd.read_csv("https://raw.githubusercontent.com/The-Pandwa/Datathon/main/films_rom.csv")
     
     # Système de recommandation
-    st.write("Voici nos recommandations de films pour créer des moments inoubliables :")
+    st.write("Voici nos recommandations de films pour créer des moments inoubliables à 2 :")
     
     # Création des DF en fonction de conditions par popularité
     df_0 = films_rom.loc[films_rom['Note'] > 7.5]
