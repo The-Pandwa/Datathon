@@ -65,6 +65,9 @@ user_2_input = np.array([[dining_2, gaming_2, clubbing_2, reading_2, shopping_2,
 X = df_final_speed_dating[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']]
 y = df_final_speed_dating['match']
 
+# Système de recommandation
+st.write("Voici nos recommandations en fonction des critères choisis :")
+
 # Division des données en ensemble d'entraînement et ensemble de test
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=36, train_size=0.75)
 
@@ -84,9 +87,6 @@ for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
 similarity = cosine_similarity(user_1_input, user_2_input)
 st.sidebar.write("Similarité cosinus entre les deux utilisateurs :", similarity[0][0])
 
-# Système de recommandation
-st.write("Voici nos recommandations en fonction des critères choisis :")
-
 link10 = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/tmdb_full_cleaned_1.csv"
 tmdb_full_cleaned_1 = pd.read_csv(link10)
 link11 = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/tmdb_full_cleaned_2.csv"
@@ -96,8 +96,6 @@ df_tmdb = pd.concat([tmdb_full_cleaned_1, tmdb_full_cleaned_2])
 
 link3 = 'https://raw.githubusercontent.com/The-Pandwa/Datathon/main/title_basics_cleaned.csv'
 df_imdb = pd.read_csv(link3)
-
-# df_imdb.loc[df_imdb['originalTitle'].str.contains('Amélie')]
 
 films_rom_imdb = df_imdb.loc[df_imdb['genres'].str.contains('Romance')]
 
