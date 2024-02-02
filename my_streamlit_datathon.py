@@ -32,7 +32,7 @@ from sklearn.metrics import accuracy_score, r2_score
 # df_final_speed_dating = pd.read_csv(link)
 
 # URL de l'image sur GitHub
-github_image_url = "https://static.streamlit.io/examples/dog.jpg"
+github_image_url = "https://drive.google.com/file/d/1CoxPUZvxdkeP75tgqElj0VkQ6NDcRLnP/view?usp=drive_link"
 
 # Afficher l'image dans la barre latérale
 st.sidebar.image(github_image_url, use_column_width=True)
