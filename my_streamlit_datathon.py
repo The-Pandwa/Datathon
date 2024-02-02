@@ -79,82 +79,82 @@ for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
 similarity = cosine_similarity(user_1_input, user_2_input)
 st.sidebar.write("Similarité cosinus entre les deux utilisateurs :", similarity[0][0])
 
-# link10 = "/content/drive/MyDrive/Datathon/tmdb_full_cleaned_1.csv"
-# tmdb_full_cleaned_1 = pd.read_csv(link10)
-# link11 = "/content/drive/MyDrive/Datathon/tmdb_full_cleaned_2.csv"
-# tmdb_full_cleaned_2 = pd.read_csv(link11)
+link10 = "/content/drive/MyDrive/Datathon/tmdb_full_cleaned_1.csv"
+tmdb_full_cleaned_1 = pd.read_csv(link10)
+link11 = "/content/drive/MyDrive/Datathon/tmdb_full_cleaned_2.csv"
+tmdb_full_cleaned_2 = pd.read_csv(link11)
 
-# df_tmdb = pd.concat([tmdb_full_cleaned_1, tmdb_full_cleaned_2]) 
+df_tmdb = pd.concat([tmdb_full_cleaned_1, tmdb_full_cleaned_2]) 
 
-# link3 = '/content/drive/MyDrive/Datathon/title_basics_cleaned.csv'
-# df_imdb = pd.read_csv(link3)
+link3 = '/content/drive/MyDrive/Datathon/title_basics_cleaned.csv'
+df_imdb = pd.read_csv(link3)
 
-# df_imdb.loc[df_imdb['originalTitle'].str.contains('Amélie')]
+df_imdb.loc[df_imdb['originalTitle'].str.contains('Amélie')]
 
-# films_rom_imdb = df_imdb.loc[df_imdb['genres'].str.contains('Romance')]
+films_rom_imdb = df_imdb.loc[df_imdb['genres'].str.contains('Romance')]
 
-# films_rom_imdb['runtimeMinutes'] = films_rom_imdb['runtimeMinutes'].replace(r"\N", None)
-# films_rom_imdb['runtimeMinutes'] = pd.to_numeric(films_rom_imdb['runtimeMinutes'])
-# films_rom_imdb = films_rom_imdb.loc[films_rom_imdb['runtimeMinutes'] >= 60]
+films_rom_imdb['runtimeMinutes'] = films_rom_imdb['runtimeMinutes'].replace(r"\N", None)
+films_rom_imdb['runtimeMinutes'] = pd.to_numeric(films_rom_imdb['runtimeMinutes'])
+films_rom_imdb = films_rom_imdb.loc[films_rom_imdb['runtimeMinutes'] >= 60]
 
-# films_rom_tmdb = df_tmdb.loc[df_tmdb['genres'].str.contains('Romance')]
+films_rom_tmdb = df_tmdb.loc[df_tmdb['genres'].str.contains('Romance')]
 
-# films_rom_tmdb = films_rom_tmdb.loc[films_rom_tmdb['runtime'] >= 60]
+films_rom_tmdb = films_rom_tmdb.loc[films_rom_tmdb['runtime'] >= 60]
 
-# films_select = films_rom_tmdb.loc[films_rom_tmdb['popularite_ponderee'] >= 6]
+films_select = films_rom_tmdb.loc[films_rom_tmdb['popularite_ponderee'] >= 6]
 
-# films_full = pd.merge(films_rom_imdb, films_select, how='inner', right_on= 'imdb_id', left_on= 'tconst')
+films_full = pd.merge(films_rom_imdb, films_select, how='inner', right_on= 'imdb_id', left_on= 'tconst')
 
-# films_rom = films_full.loc[films_full['popularite_ponderee'] >= 6.45]
+films_rom = films_full.loc[films_full['popularite_ponderee'] >= 6.45]
 
-# films_rom.drop(['tconst', 'primaryTitle', 'endYear', 'backdrop_path', 'budget',
-#                 'homepage', 'imdb_id', 'original_language', 'original_title',
-#                 'overview','popularity','production_countries', 'tagline',
-#                 'video', 'vote_average', 'vote_count',
-#                 'production_companies_name', 'runtimeMinutes', 'genres_x',
-#                 'production_companies_country', 'release_date', 'revenue', 'titleType', 'title'], axis = 1, inplace=True)
+films_rom.drop(['tconst', 'primaryTitle', 'endYear', 'backdrop_path', 'budget',
+                'homepage', 'imdb_id', 'original_language', 'original_title',
+                'overview','popularity','production_countries', 'tagline',
+                'video', 'vote_average', 'vote_count',
+                'production_companies_name', 'runtimeMinutes', 'genres_x',
+                'production_companies_country', 'release_date', 'revenue', 'titleType', 'title'], axis = 1, inplace=True)
 
-# films_rom.sort_values(by= 'popularite_ponderee', ascending= False)
+films_rom.sort_values(by= 'popularite_ponderee', ascending= False)
 
-# df_0 = films_rom.loc[films_rom['popularite_ponderee'] > 7.5]
+df_0 = films_rom.loc[films_rom['popularite_ponderee'] > 7.5]
 
-# df_20 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.8) & (films_rom['popularite_ponderee'] <= 7.5)]
+df_20 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.8) & (films_rom['popularite_ponderee'] <= 7.5)]
 
-# df_40 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.608) & (films_rom['popularite_ponderee'] <= 6.8)]
+df_40 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.608) & (films_rom['popularite_ponderee'] <= 6.8)]
 
-# df_60 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.51) & (films_rom['popularite_ponderee'] <= 6.607)]
+df_60 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.51) & (films_rom['popularite_ponderee'] <= 6.607)]
 
-# df_80 = films_rom.loc[films_rom['popularite_ponderee'] < 6.51]
+df_80 = films_rom.loc[films_rom['popularite_ponderee'] < 6.51]
 
-# if similarity < 0.19:
-#   print(df_0)
-# elif 0.20 <= similarity < 0.39:
-#   print(df_20)
-# elif  0.40 <= similarity < 0.59:
-#   print(df_40)
-# elif 0.60 <= similarity < 0.79:
-#   print(df_60)
-# else :
-#   print(df_80)
+if similarity < 0.19:
+  print(df_0)
+elif 0.20 <= similarity < 0.39:
+  print(df_20)
+elif  0.40 <= similarity < 0.59:
+  print(df_40)
+elif 0.60 <= similarity < 0.79:
+  print(df_60)
+else :
+  print(df_80)
 
-# # Système de recommandation :
-# st.write("Voici nos recommandations en fonction des critères choisis :")
+# Système de recommandation :
+st.write("Voici nos recommandations en fonction des critères choisis :")
 
-# def recommandation(df):
+def recommandation(df):
 
-#     col0, col1= st.columns(2)
+    col0, col1= st.columns(2)
 
-#     with col0:
-#         full_link_0="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][0]
-#         st.image(full_link_0)
-#         imdb_link_0 = "https://www.imdb.com/title/"+films_rom['imdb_id'][0]
-#         st.write(f"[{ films_rom['originalTitle'][1]}]({imdb_link_0})")
+    with col0:
+        full_link_0="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][0]
+        st.image(full_link_0)
+        imdb_link_0 = "https://www.imdb.com/title/"+films_rom['imdb_id'][0]
+        st.write(f"[{ films_rom['originalTitle'][1]}]({imdb_link_0})")
 
-#     with col1:
-#         full_link_1="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][1]
-#         st.image(full_link_1)
-#         imdb_link_1 = "https://www.imdb.com/title/"+films_rom['imdb_id'][1]
-#         st.write(f"[{ recommandation['originalTitle'][2]}]({imdb_link_1})")
+    with col1:
+        full_link_1="https://image.tmdb.org/t/p/w500" +films_rom['poster_path'][1]
+        st.image(full_link_1)
+        imdb_link_1 = "https://www.imdb.com/title/"+films_rom['imdb_id'][1]
+        st.write(f"[{ recommandation['originalTitle'][2]}]({imdb_link_1})")
 
-# if DF == "main":
-#     main()
+if DF == "main":
+    main()
