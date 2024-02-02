@@ -16,6 +16,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import sklearn
+import gdown
 from sklearn.model_selection import train_test_split
 # from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import LinearRegression
@@ -34,14 +35,12 @@ from sklearn.metrics import accuracy_score, r2_score
 # Création de la sidebar et features
 st.sidebar.title('Votre taux de compatibilité :')
 
-import gdown
-
 # Remplacez 'YOUR_FILE_ID' par l'ID réel de votre fichier dans Google Drive
 file_id = '1CoxPUZvxdkeP75tgqElj0VkQ6NDcRLnP'
 output_path = '/tmp/my_image.jpg'  # Chemin où télécharger l'image localement
 
 # Construire l'URL de téléchargement depuis Google Drive
-url = f'https://drive.google.com/file/d/{file_id}'
+url = f'https://drive.google.com/uc?id={file_id}'
 
 # Télécharger l'image localement
 gdown.download(url, output_path, quiet=False)
