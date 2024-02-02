@@ -126,18 +126,19 @@ df_60 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.51) & (films_rom['po
 
 df_80 = films_rom.loc[films_rom['popularite_ponderee'] < 6.51]
 
+# Affichage en fonction de la similarité
 if similarity < 0.19:
-  print(df_0)
+    st.write(df_0)
 elif 0.20 <= similarity < 0.39:
-  print(df_20)
-elif  0.40 <= similarity < 0.59:
-  print(df_40)
+    st.write(df_20)
+elif 0.40 <= similarity < 0.59:
+    st.write(df_40)
 elif 0.60 <= similarity < 0.79:
-  print(df_60)
-else :
-  print(df_80)
+    st.write(df_60)
+else:
+    st.write(df_80)
 
-# Système de recommandation :
+# Système de recommandation
 st.write("Voici nos recommandations en fonction des critères choisis :")
 
 def recommandation(df):
