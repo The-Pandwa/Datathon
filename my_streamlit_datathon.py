@@ -84,6 +84,9 @@ for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
 similarity = cosine_similarity(user_1_input, user_2_input)
 st.sidebar.write("Similarité cosinus entre les deux utilisateurs :", similarity[0][0])
 
+# Système de recommandation
+st.write("Voici nos recommandations en fonction des critères choisis :")
+
 link10 = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/tmdb_full_cleaned_1.csv"
 tmdb_full_cleaned_1 = pd.read_csv(link10)
 link11 = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/tmdb_full_cleaned_2.csv"
@@ -130,9 +133,6 @@ df_40 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.608) & (films_rom['p
 df_60 = films_rom.loc[(films_rom['popularite_ponderee'] > 6.51) & (films_rom['popularite_ponderee'] <= 6.607)]
 
 df_80 = films_rom.loc[films_rom['popularite_ponderee'] < 6.51]
-
-# Système de recommandation
-st.write("Voici nos recommandations en fonction des critères choisis :")
 
 # Affichage en fonction de la similarité
 if similarity < 0.19:
