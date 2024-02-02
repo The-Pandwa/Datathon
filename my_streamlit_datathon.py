@@ -79,13 +79,9 @@ X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected
 # Entraînement du modèle de régression logistique
 model = LogisticRegression().fit(X_train, y_train)
 
-# Probabilité de prédiction pour les classes
-# for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
-#     st.write("Probabilité de prédiction pour la classe", i, ":", j)
-
 # Calcul de la similarité cosinus entre les deux utilisateurs
 similarity = cosine_similarity(user_1_input, user_2_input)
-percent_similarity = st.sidebar.write("Similarité cosinus entre les deux utilisateurs :", similarity[0][0])
+percent_similarity = st.sidebar.write("Vous êtes cosinusement connecté :", similarity[0][0])
 
 # Vérification si percent_similarity est None
 if percent_similarity is not None:
@@ -93,8 +89,6 @@ if percent_similarity is not None:
         st.sidebar.write('Aîe aîe aîe, ça sent le sapin entre vous !')
     elif percent_similarity >= 0.5:
         st.sidebar.write('Chaude soirée en perspective !')
-else:
-    st.sidebar.write('Veuillez choisir une valeur de similarité.')
 
 link10 = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/tmdb_full_cleaned_1.csv"
 tmdb_full_cleaned_1 = pd.read_csv(link10)
