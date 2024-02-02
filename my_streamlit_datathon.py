@@ -51,7 +51,7 @@ with col1:
     
     for category, image_link in images_partenaire_1.items():
         st.slider(f"{category} (Partenaire 1)", min_value=1, max_value=10, value=None, step=1)
-        st.image(image_link, caption=category, use_column_width=True)
+        st.slider.image(image_link, caption=category, use_column_width=True)
 
 
 with col2:
