@@ -81,6 +81,10 @@ X_train_selected, X_test_selected, y_train, y_test = train_test_split(X_selected
 # Entraînement du modèle de régression logistique
 model = LogisticRegression().fit(X_train, y_train)
 
+# Probabilité de prédiction pour les classes
+for i, j in zip(model.classes_, model.predict_proba(X_test)[0]*100):
+    print("Probabilité de prédiction pour la classe", i, ":", j)
+
 # Calcul de la similarité cosinus entre les deux utilisateurs
 similarity = cosine_similarity(user_1_input, user_2_input)
 percent_similarity = st.sidebar.write("Vous êtes cosinusement connecté :", similarity[0][0])
