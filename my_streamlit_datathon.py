@@ -29,7 +29,7 @@ from sklearn.metrics import accuracy_score, r2_score
 # from sklearn.metrics import confusion_matrix
 
 # # Import dataset
-link = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/my_streamlit_datathon.py"
+link = "https://raw.githubusercontent.com/The-Pandwa/Datathon/main/df_final_speed_dating.csv"
 df_final_speed_dating = pd.read_csv(link, error_bad_lines=False)
 
 # Création de la sidebar et features
