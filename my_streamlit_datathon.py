@@ -75,9 +75,6 @@ if st.button("Vous matchez ou pas? "):
     X = df_final_speed_dating[['dining', 'gaming', 'clubbing', 'reading', 'shopping', 'Sports', 'Art', 'Musique', 'TV_Cinema']]
     y = df_final_speed_dating['match']
     
-    # Système de recommandation
-    st.write("Voici nos recommandations en fonction des critères choisis :")
-    
     # Division des données en ensemble d'entraînement et ensemble de test
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=36, train_size=0.75)
     
